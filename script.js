@@ -49,11 +49,40 @@ class wordlist {
 
 
 class Node {
-    constructor () {
-        this.id;
-        this.name;
+    constructor (id, name) {
+        this.id             = id;
+        this.name           = name;
         this.description;
         this.terrain;
         this.exits = [];
     }
+
+    linkToNode(id) {
+        if (id!=this.id) {
+            this.exits.push(id)
+        }
+    }
+
+    unlinkFromNode(id) {
+        if (id!=this.id) {
+            //this.exits.push(id)
+        }
+    }
+
+    showLocation() {
+        console.log(this)
+    }
 }
+
+let nodeList = [];
+
+for (let i = 0; i < 20; i++) {
+    node = new Node("yo",i);
+    if (i != 0) {
+        node.linkToNode(i-1);
+    }
+
+    nodeList.push(node)
+}
+
+console.log(nodeList);
