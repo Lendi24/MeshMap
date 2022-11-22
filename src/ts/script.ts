@@ -1,6 +1,7 @@
 class NameGen {
     static generate() {
-        console.log(
+
+        return (
              `a ${wordlist.adjective[ Math.floor(Math.random() * wordlist.adjective.length) ]}` +
               ` ${wordlist.subjectives[ Math.floor(Math.random() * wordlist.subjectives.length) ]} ` +
             `of ${wordlist.nouns[ Math.floor(Math.random() * wordlist.nouns.length) ]}` 
@@ -48,22 +49,28 @@ class wordlist {
 }
 
 
-class Node {
-    constructor (id, name) {
+class Room {
+    id:number; 
+    name:string; 
+    description:string; 
+    terrain; 
+    exits:Array<number>;
+
+    constructor (id:number, name:string) {
         this.id             = id;
         this.name           = name;
-        this.description;
-        this.terrain;
+        this.description    = "";
+        this.terrain        = "";
         this.exits = [];
     }
 
-    linkToNode(id) {
+    linkToNode(id:number) {
         if (id!=this.id) {
             this.exits.push(id)
         }
     }
 
-    unlinkFromNode(id) {
+    unlinkFromNode(id:number) {
         if (id!=this.id) {
             //this.exits.push(id)
         }
@@ -74,11 +81,11 @@ class Node {
     }
 }
 
-let nodeList = [];
+let nodeList:Array<Room>;
 
-function generateNodes(amnt) {
+function generateNodes(amnt:number) {
     for (let i = 0; i < amnt; i++) {
-        node = new Node("yo",i);
+        let node = new Room(i,NameGen.generate());
         if (i == 0) {
             node.linkToNode(amnt);
             node.linkToNode(i+1);
