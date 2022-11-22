@@ -76,13 +76,23 @@ class Node {
 
 let nodeList = [];
 
-for (let i = 0; i < 20; i++) {
-    node = new Node("yo",i);
-    if (i != 0) {
-        node.linkToNode(i-1);
-    }
+function generateNodes(amnt) {
+    for (let i = 0; i < amnt; i++) {
+        node = new Node("yo",i);
+        if (i == 0) {
+            node.linkToNode(amnt);
+            node.linkToNode(i+1);
+        } else if (i == amnt) {
+            node.linkToNode(i-1);
+            node.linkToNode(0);
+        } else {
+            node.linkToNode(i-1);
+            node.linkToNode(i+1);
+        }
+    
+        nodeList.push(node)
+    }    
 
-    nodeList.push(node)
+    console.log(nodeList);
 }
 
-console.log(nodeList);
