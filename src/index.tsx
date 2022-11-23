@@ -4,6 +4,7 @@ import './index.css';
 
 import App from './App';
 import Welcome from './views/Welcome/Welcome';
+import Editor from './views/Editor/Editor';
 
 import reportWebVitals from './reportWebVitals';
 import {
@@ -18,10 +19,17 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
+
   {
     path: "/welcome",
     element: <Welcome />,
   },
+
+  {
+    path: "/editor",
+    element: <Editor />,
+  },
+
 ]);
 
 const root = ReactDOM.createRoot(
