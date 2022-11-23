@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 import App from './App';
-import Welcome from './views/Welcome';
+import Welcome from './views/Welcome/Welcome';
 
 import reportWebVitals from './reportWebVitals';
 import {
