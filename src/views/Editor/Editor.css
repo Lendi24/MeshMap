@@ -42,8 +42,6 @@
 
     overflow: hidden;
     color: black;
-
-
 }
 
 
@@ -262,7 +260,7 @@ drop drop-content:active {
 }
 
 canvas, #color-display-container{
-    background-image: url(../img/transp.png);
+    /*background-image: url(../img/transp.png);*/
     background-repeat: repeat;
     border: solid black 1px;
     box-shadow: 0px 0px 20px 20px #00000017;
