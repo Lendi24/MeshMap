@@ -1,6 +1,3 @@
-import React from "react";
-import cardImg from "./images/katie-zaferes.png";
-import starImg from "./images/star.png";
 import data from "./data";
 import Icon, { Stack } from '@mdi/react';
 
