@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
-import Icon, { Stack } from '@mdi/react';
-import { mdiAccount } from '@mdi/js';
-
 import { Outlet, Link } from "react-router-dom";
 import './Editor.css'
+
+import tools from '../../components/Input/ToolButton/Toolbutton'
 
 export default function Editor() {
   return (
@@ -19,15 +18,9 @@ export default function Editor() {
         <div className="flex flex-grow m-0 overflow-hidden bg-green-600 justify-between">
             <div className="bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur">{/*<!--Tools-->*/}
                 <div className="space-y-3" id="tool-section">
-                    <span title="Brush (B)" className="text-white border-2 rounded hover:bg-green-700 hover:scale-110 transform transition-all mdi mdi-brush w-10" >
-                        <Icon path={mdiAccount}></Icon>
-                    </span>
-
-                    <Icon title="Brush (B)" path={mdiAccount} className="text-white border-2 rounded hover:bg-green-700 hover:scale-110 transform transition-all mdi mdi-brush w-10"></Icon>
-                    <Icon title="Brush (B)" path={mdiAccount} className="text-white border-2 rounded hover:bg-green-700 hover:scale-110 transform transition-all mdi mdi-brush w-10"></Icon>
-                    <Icon title="Brush (B)" path={mdiAccount} className="text-white border-2 rounded hover:bg-green-700 hover:scale-110 transform transition-all mdi mdi-brush w-10"></Icon>
+                    { tools }
                 </div>
-            </div> {/*<!--Tools-->*/}
+            </div> 
             <div className="w-full h-full m-0 flex justify-center items-center">
                 <canvas id="drawing-area" className="z-10"></canvas>
             </div>
