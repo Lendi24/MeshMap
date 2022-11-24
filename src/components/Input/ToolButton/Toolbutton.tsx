@@ -4,7 +4,7 @@ import starImg from "./images/star.png";
 import data from "./data";
 import Icon, { Stack } from '@mdi/react';
 
-function ToolButto(props:any) {
+function ToolButton(props:any) {
     return (
         <span 
             title={props.title} 
@@ -35,7 +35,7 @@ function ToolButto(props:any) {
 
 export default data.map(item => {
     return (
-        <ToolButto 
+        <ToolButton
             key     =  {item.title}
             title   =  {item.title}
             icon    =  {item.icon}
