@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import './Editor.css'
 
-import tools from '../../components/Input/ToolButton/Toolbutton'
+import tools        from '../../components/Input/ToolButton/Toolbutton'
+import dropdowns    from '../../components/Input/TopBar/TopBar'
 
 export default function Editor() {
   return (
@@ -11,7 +12,7 @@ export default function Editor() {
     
         <nav className="flex flex-row space-x-1 z-30" id="top-bar">
             <span className="mdi mdi-brush ml-3"></span>
-            <div id="dropdowns"></div>
+            <div id="dropdowns"> {dropdowns} </div>
             <span id="lock" className="mdi mdi-lock-open-variant absolute right-0"></span>
         </nav>
 

@@ -1,7 +1,6 @@
 import data from "./data";
-import Icon from '@mdi/react';
 
-function ToolButton(props:any) {
+function TopBar(props:any) {
     return (
         <span 
             title={props.title} 
@@ -12,18 +11,16 @@ function ToolButton(props:any) {
                 hover:bg-green-700 
                 hover:scale-110 
                 transform transition-all 
-                w-10" >
-            <Icon path={props.icon}></Icon>
+                w-10
+            " >
         </span>
     )
 }
 
 export default data.map(item => {
     return (
-        <ToolButton
+        <TopBar
             key     =  {item.title}
-            title   =  {item.title}
-            icon    =  {item.icon}
         />
     )
 })        
