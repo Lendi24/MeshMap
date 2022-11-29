@@ -3,8 +3,13 @@ import React, { Component } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import './Editor.css'
 
+//Json data for components
 import tools        from '../../components/Input/ToolButton/Toolbutton'
 import dropdowns    from '../../components/Input/TopBar/TopBar'
+
+//p5 canvas
+import sketch from '../../app/p5'
+import { ReactP5Wrapper } from "react-p5-wrapper";
 
 export default function Editor() {
   return (
@@ -23,7 +28,8 @@ export default function Editor() {
                 </div>
             </div> 
             <div className="w-full h-full m-0 flex justify-center items-center">
-                <canvas id="drawing-area" className="z-10"></canvas>
+                <ReactP5Wrapper sketch={sketch} />
+                {/*<canvas id="drawing-area" className="z-10"></canvas>*/}
             </div>
             <div className="w-60 bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur" id="side-section">
                 <div className="" id="side-section-color"> {/*<!--Colour picker-->*/}
