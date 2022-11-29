@@ -1,11 +1,13 @@
 import React from "react";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 
+/*
 let tileMap = [
   [true,  true,  false, false],
   [true,  true,  false, false],
   [false, false, false, false],
 ]
+*/
 
 let w : number;
 let columns : any;
@@ -36,13 +38,15 @@ export default function sketch(p5: P5CanvasInstance) {
     for (let i = 0; i < columns; i++) {
       next[i] = new Array(rows);
     }
+
+    board[0][2] = 1;
     //init();
   
   }
 
   p5.draw = () => {
     p5.background(255);
-    p5.generate();
+    //p5.generate();
     for ( let i = 0; i < columns;i++) {
       for ( let j = 0; j < rows;j++) {
         if ((board[i][j] == 1)) p5.fill(0);
