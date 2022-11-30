@@ -39,7 +39,7 @@ export default function sketch(p5: P5CanvasInstance) {
       next[i] = new Array(rows);
     }
 
-    board[0][2] = 1;
+    board[0][1] = 1;
     //init();
   
   }

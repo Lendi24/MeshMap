@@ -1,9 +1,16 @@
 import data from "./data";
+import {selectedTool, selectNewTool} from "./data";
 import Icon from '@mdi/react';
+import React from "react";
+
+let action = () => {
+    console.log("yoinlk")
+}
 
 function ToolButton(props:any) {
     return (
         <span 
+            onClick={(e)=>{selectNewTool(props.index,e.currentTarget)}}
             title={props.title} 
             className="
                 text-white 
@@ -18,10 +25,11 @@ function ToolButton(props:any) {
     )
 }
 
-export default data.map(item => {
+export default data.map((item, index) => {
     return (
         <ToolButton
-            key     =  {item.title}
+            key     =  {index+item.title}
+            index   =  {index}
             title   =  {item.title}
             icon    =  {item.icon}
         />

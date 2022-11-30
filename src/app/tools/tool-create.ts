@@ -1,3 +1,5 @@
+/*
+import Tool from '../tool'
 class CreateTool extends Tool {
     conf: {
         "Width" : {
@@ -19,3 +21,4 @@ class CreateTool extends Tool {
         },
     };
 }
+*/
