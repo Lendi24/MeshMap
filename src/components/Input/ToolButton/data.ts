@@ -36,17 +36,11 @@ let tools = {
 // = tools[0];
 
 function selectNewTool(toolID:any, elem:HTMLElement) {
-    //console.log(toolID)
+    if (selectedToolHtml) { selectedToolHtml.style.backgroundColor = "unset";}
     elem.style.backgroundColor = "red";
-
-    if (selectedToolHtml) {
-        selectedToolHtml.style.backgroundColor = "unset";
-    }
     
     selectedTool = tools[toolID];
     selectedToolHtml = elem;
-
-    //selectedTool.
 }
 
 export default tools;
