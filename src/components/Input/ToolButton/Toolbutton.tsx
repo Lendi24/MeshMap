@@ -1,11 +1,7 @@
 import data from "./data";
-import {selectedTool, selectNewTool} from "./data";
+import {selectNewTool} from "./data";
 import Icon from '@mdi/react';
 import React from "react";
-
-let action = () => {
-    console.log("yoinlk")
-}
 
 function ToolButton(props:any) {
     return (

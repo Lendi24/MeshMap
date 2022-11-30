@@ -14,8 +14,34 @@ let tools = [
         title: "Create",
         icon: icons.mdiShapeCirclePlus,
     },
-/*
+
     {
+        title: "Create",
+        icon: icons.mdiShapeCirclePlus,
+    },
+
+    {
+        title: "Create",
+        icon: icons.mdiShapeCirclePlus,
+    },
+
+    {
+        title: "Create",
+        icon: icons.mdiShapeCirclePlus,
+    },
+
+    {
+        title: "Create",
+        icon: icons.mdiShapeCirclePlus,
+    },
+
+    {
+        title: "Create",
+        icon: icons.mdiShapeCirclePlus,
+    },
+
+/*
+    { 
         title: "Connect (C)",
         icon: icons.mdiVectorLine,
     },*/
@@ -36,7 +62,7 @@ let tools = {
 // = tools[0];
 
 function selectNewTool(toolID:any, elem:HTMLElement) {
-    if (selectedToolHtml) { selectedToolHtml.style.backgroundColor = "unset";}
+    if (selectedToolHtml) { selectedToolHtml.style.backgroundColor = "";}
     elem.style.backgroundColor = "red";
     
     selectedTool = tools[toolID];
@@ -44,4 +70,4 @@ function selectNewTool(toolID:any, elem:HTMLElement) {
 }
 
 export default tools;
-export {selectedTool, selectNewTool};
+export {selectNewTool};
