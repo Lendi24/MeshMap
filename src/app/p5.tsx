@@ -8,12 +8,9 @@ let rows : any;
 let board : any;
 let locked = true;
 
+let canvasHasUpdates = false;
 
-export function canvasSetPixel(x:number, y:number) {
-  //Update bitmap
-  board[x][y] = 1;
-
-  //Draw canvas
+export function canvasUpdate() {
   gp5.background(255);
   for ( let i = 0; i < columns;i++) {
     for ( let j = 0; j < rows;j++) {
@@ -23,6 +20,11 @@ export function canvasSetPixel(x:number, y:number) {
       gp5.rect(i * w, j * w, w-1, w-1);
     }
   } 
+}
+
+export function canvasSetPixel(x:number, y:number) {
+  board[x][y] = 1;
+  canvasUpdate();
 }
 
 export function canvasGetPixel(x:number, y:number) {
@@ -45,38 +47,17 @@ export default function sketch(p5: P5CanvasInstance) {
 
     canvas.elt.onmouseover = () => {locked = false;}
     canvas.elt.onmouseout  = () => {locked = true;}
-  }
 
-  p5.draw = () => {
-    /*
-    p5.background(255);
-    for ( let i = 0; i < columns;i++) {
-      for ( let j = 0; j < rows;j++) {
-        if ((board[i][j] == 1)) p5.fill(0);
-        else p5.fill(255);
-        p5.stroke(0);
-        p5.rect(i * w, j * w, w-1, w-1);
+    canvas.elt.onmousemove = (e:MouseEvent) => {
+      if (e.target && e.buttons == 1 && !locked) {
+        let target = e.target as HTMLElement;
+        let x = Math.floor((e.x - target.offsetLeft) / w);
+        let y = Math.floor((e.y - target.offsetTop ) / w);
+        canvasSetPixel(x,y)
       }
-    }  */
-  };
-
-
-  p5.mouseDragged = (e:MouseEvent) => {
-    if (e.target && !locked) {
-      let target = e.target as HTMLElement;
-      let x = Math.floor((e.x - target.offsetLeft) / w);
-      let y = Math.floor((e.y - target.offsetTop ) / w);
-      canvasSetPixel(x,y)
     }
-  }
 
-  p5.mouseClicked = (e:MouseEvent) => {
-    if (e.target && !locked) {
-      let target = e.target as HTMLElement;
-      let x = Math.floor((e.x - target.offsetLeft) / w);
-      let y = Math.floor((e.y - target.offsetTop ) / w);
-      canvasSetPixel(x,y)
-    }
+    canvasUpdate();
   }
 }
 
