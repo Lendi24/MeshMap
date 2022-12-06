@@ -1,5 +1,6 @@
 import React from "react";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
+import { Tile } from './tiles/Tile'; 
 
 let gp5 : any;
 let w : number;
@@ -55,17 +56,6 @@ export function canvasUpdate() {
   } 
 }
 
-class Tile {
-  r : number;
-  g : number;
-  b : number;
-
-  constructor(r:number, g:number, b:number) {
-    this.r = r;
-    this.g = g;
-    this.b = b;
-  }
-}
 
 class Utils {
   clamp = (num:number, min:number, max:number) => Math.min(Math.max(num, min), max);
