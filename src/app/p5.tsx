@@ -5,10 +5,16 @@ let w : number;
 let columns : any;
 let rows : any;
 let board : any;
+let locked = true;
+
+
+function updateCanvas(x:number, y:number) {
+
+}
 
 export default function sketch(p5: P5CanvasInstance) {
   p5.setup = () => {
-    p5.createCanvas(720, 400);
+    let canvas = p5.createCanvas(720, 400);
     w = 20;
     columns = Math.floor(p5.width / w);
     rows = Math.floor(p5.height / w);
@@ -18,7 +24,8 @@ export default function sketch(p5: P5CanvasInstance) {
       board[i] = new Array(rows);
     }
 
-    board[0][1] = 1;
+    canvas.elt.onmouseover = () => {locked = false;}
+    canvas.elt.onmouseout  = () => {locked = true;}
   }
 
   p5.draw = () => {
@@ -33,19 +40,26 @@ export default function sketch(p5: P5CanvasInstance) {
     }  
   };
 
-  p5.mouseClicked = (e:MouseEvent) => {
-    console.log("oi!");
 
-    if (e.target) {
+  p5.mouseDragged = (e:MouseEvent) => {
+    if (e.target && !locked) {
       let target = e.target as HTMLElement;
       let x = Math.floor((e.x - target.offsetLeft) / w);
       let y = Math.floor((e.y - target.offsetTop ) / w);
-      console.log(x+" "+y)
       board[x][y] = 1;
     }
+  }
 
-    console.log(e);
+  p5.mouseClicked = (e:MouseEvent) => {
+    if (e.target && !locked) {
+      let target = e.target as HTMLElement;
+      let x = Math.floor((e.x - target.offsetLeft) / w);
+      let y = Math.floor((e.y - target.offsetTop ) / w);
+      board[x][y] = 1;
+    }
   }
 }
 
-  
+class Utils {
+  clamp = (num:number, min:number, max:number) => Math.min(Math.max(num, min), max);
+}
