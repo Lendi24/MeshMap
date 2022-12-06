@@ -8,29 +8,9 @@ let rows : any;
 let board : any;
 let locked = true;
 
-let canvasHasUpdates = false;
 
-export function canvasUpdate() {
-  gp5.background(255);
-  for ( let i = 0; i < columns;i++) {
-    for ( let j = 0; j < rows;j++) {
-      if ((board[i][j] == 1)) gp5.fill(0);
-      else gp5.fill(255);
-      gp5.stroke(0);
-      gp5.rect(i * w, j * w, w-1, w-1);
-    }
-  } 
-}
-
-export function canvasSetPixel(x:number, y:number) {
-  board[x][y] = 1;
-  canvasUpdate();
-}
-
-export function canvasGetPixel(x:number, y:number) {
-  return board[x][y];
-} 
-
+export function canvasSetPixel(x:number, y:number) { board[x][y] = 1; canvasUpdate(); }
+export function canvasGetPixel(x:number, y:number) { return board[x][y]; } 
 
 export default function sketch(p5: P5CanvasInstance) {
   gp5 = p5;
@@ -59,6 +39,18 @@ export default function sketch(p5: P5CanvasInstance) {
 
     canvasUpdate();
   }
+}
+
+export function canvasUpdate() {
+  gp5.background(255);
+  for ( let i = 0; i < columns;i++) {
+    for ( let j = 0; j < rows;j++) {
+      if ((board[i][j] == 1)) gp5.fill(0);
+      else gp5.fill(255);
+      gp5.stroke(0);
+      gp5.rect(i * w, j * w, w-1, w-1);
+    }
+  } 
 }
 
 class Utils {
