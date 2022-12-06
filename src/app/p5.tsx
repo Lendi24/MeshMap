@@ -9,7 +9,7 @@ let board : any;
 let locked = true;
 
 
-export function canvasSetPixel(x:number, y:number) { board[x][y] = 1; canvasUpdate(); }
+export function canvasSetPixel(x:number, y:number, pixel:Tile) { board[x][y] = pixel; canvasUpdate(); }
 export function canvasGetPixel(x:number, y:number) { return board[x][y]; } 
 
 export default function sketch(p5: P5CanvasInstance) {
@@ -23,6 +23,9 @@ export default function sketch(p5: P5CanvasInstance) {
     board = new Array(columns);
     for (let i = 0; i < columns; i++) {
       board[i] = new Array(rows);
+      for (let j = 0; j < rows; j++) {
+        board[i][j] = new Tile(255,255,255);
+      }
     }
 
     canvas.elt.onmouseover = () => {locked = false;}
@@ -33,7 +36,7 @@ export default function sketch(p5: P5CanvasInstance) {
         let target = e.target as HTMLElement;
         let x = Math.floor((e.x - target.offsetLeft) / w);
         let y = Math.floor((e.y - target.offsetTop ) / w);
-        canvasSetPixel(x,y)
+        canvasSetPixel(x,y,new Tile(0,0,0))
       }
     }
 
@@ -45,14 +48,33 @@ export function canvasUpdate() {
   gp5.background(255);
   for ( let i = 0; i < columns;i++) {
     for ( let j = 0; j < rows;j++) {
-      if ((board[i][j] == 1)) gp5.fill(0);
-      else gp5.fill(255);
+      gp5.fill(board[i][j].r, board[i][j].g, board[i][j].b)
       gp5.stroke(0);
       gp5.rect(i * w, j * w, w-1, w-1);
     }
   } 
 }
 
+class Tile {
+  r : number;
+  g : number;
+  b : number;
+
+  constructor(r:number, g:number, b:number) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
+  }
+}
+
 class Utils {
   clamp = (num:number, min:number, max:number) => Math.min(Math.max(num, min), max);
 }
+
+/*
+
+
+  Color(rgb)
+  Type(num)
+  ObjectRef
+*/
