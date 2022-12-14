@@ -2,6 +2,7 @@
   "compilerOptions": {
     "watch": true,
     "target": "es5",
+    "strictPropertyInitialization": false,
     "lib": [
       "dom",
       "dom.iterable",
