@@ -4,14 +4,84 @@ import { Outlet, Link } from "react-router-dom";
 import './Editor.css'
 
 //Json data for components
-import tools        from '../../components/Input/ToolButton/Toolbutton'
-import dropdowns    from '../../components/Input/TopBar/TopBar'
+import tools        from '../../components/Input/ToolButton/Toolbutton';
+import dropdowns    from '../../components/Input/TopBar/TopBar';
 
 //p5 canvas
 import sketch from '../../app/p5'
 import { ReactP5Wrapper } from "react-p5-wrapper";
+import freeCreate from '../../components/freeCreation/freeCreatePage'
+import worldCreate from '../../components/worldCreation/worldCreationPage'
+import data from "../../../src/components/Input/ToolButton/data";
+import {selectNewTool} from "../../../src/components/Input/ToolButton/data";
+import Icon from '@mdi/react';
+
+
+
+
+
+
 
 export default function Editor() {
+   
+    const pages:any = {
+        freeCreatePage: freeCreate,
+        worldCreationPage: worldCreate,
+      };
+      
+  const [currentPage,setCurrentPage] = React.useState("freeCreatePage");
+        
+   const [Sidepage,Setpages] = React.useState(()=>pages[currentPage])
+ 
+    
+    function MenuLoader() {
+
+
+      
+        function ToolButton(props:any) {
+            return (
+              <span
+                onClick={(e) => {
+                  selectNewTool(props.index, e.currentTarget);
+                  setCurrentPage(props.title);
+
+                }}
+                title={props.title}
+                className="text-white border-2 rounded hover:bg-green-700 hover:scale-110 transform transition-all w-10"
+              >
+                <Icon path={props.icon} />
+              </span>
+            );
+          }
+          
+        let toolsButtons = data.map((item, index) => {
+          return (
+            <ToolButton
+              key     =  {index+item.title}
+              index   =  {index}
+              title   =  {item.title}
+              icon    =  {item.icon}
+            />
+          )
+        })        
+        // let CurrentPage = pages[currentPage]; 
+
+        React.useEffect(() => {
+            Setpages(pages[currentPage])
+        }, [currentPage]);
+          
+        
+          return (
+              <>
+            {toolsButtons}
+            </>
+          )
+        
+     }
+      
+   
+ 
+        
   return (
     <div className="flex flex-col h-screen m-0 z-1 overflow-y-hidden">
     
@@ -24,7 +94,7 @@ export default function Editor() {
         <div className="flex flex-grow m-0 overflow-hidden bg-green-600 justify-between">
             <div className="bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur">{/*<!--Tools-->*/}
                 <div className="space-y-3" id="tool-section">
-                    { tools }
+                    {MenuLoader()}
                 </div>
             </div> 
             <div className="w-full h-full m-0 flex justify-center items-center">
@@ -33,7 +103,13 @@ export default function Editor() {
             </div>
             <div className="w-60 bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur" id="side-section">
                 <div className="" id="side-section-color"> {/*<!--Colour picker-->*/}
-                {/*
+
+                {Sidepage}
+
+                {
+                
+                /*
+                    
                     <label for="red">Red</label>
                     <input id="red-range" className="color-input w-full" name="red" type="range" min="0" max="255" placeholder="0" value="255">
                     <label for="green">Green</label>
@@ -44,6 +120,8 @@ export default function Editor() {
                     <input id="alph-rRange" className="color-input w-full" name="alpha" type="range" min="0" max="255" placeholder="0" value="255">
                     <div id="color-display-container"><div id="color-display" className="w-full h-10"></div></div>
                 */}
+
+                
                 </div>
                 
                 <div className="min-w-5" > {/*<!--Tool settings-->*/}</div>
