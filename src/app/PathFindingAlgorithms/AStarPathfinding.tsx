@@ -65,8 +65,6 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
        if (current == end ) 
        { 
        do{
-         console.log(current)
-         console.log(bestPath)
            current.trace = true;
            current.rgbText="rgb(170, 255, 0)";
            bestPath.push(current)

@@ -1,27 +1,31 @@
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
+import React from 'react'
 
 let selectedTool
 let selectedToolHtml:HTMLElement
 
-let tools = [
+
+
+
+ let pageTools = [
     {
-        title: "Select",
+        title: "freeCreatePage",
         icon: icons.mdiCursorDefault,
     },
 
     {
-        title: "Create",
+        title: "worldCreationPage",
         icon: icons.mdiShapeCirclePlus,
     },
 
     {
-        title: "Create",
+        title: "Noob",
         icon: icons.mdiShapeCirclePlus,
     },
 
     {
-        title: "Create",
+        title: "ROob",
         icon: icons.mdiShapeCirclePlus,
     },
 
@@ -61,13 +65,14 @@ let tools = {
 
 // = tools[0];
 
+
 function selectNewTool(toolID:any, elem:HTMLElement) {
     if (selectedToolHtml) { selectedToolHtml.style.backgroundColor = "";}
     elem.style.backgroundColor = "red";
-    
-    selectedTool = tools[toolID];
+    selectedTool = pageTools[toolID];
     selectedToolHtml = elem;
 }
 
-export default tools;
+
+export default pageTools;
 export {selectNewTool};
