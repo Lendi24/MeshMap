@@ -16,22 +16,22 @@ let selectedToolHtml:HTMLElement
 
     {
         title: "worldCreationPage",
-        icon: icons.mdiShapeCirclePlus,
+        icon: icons.mdiEarthPlus  ,
     },
 
     {
-        title: "Noob",
-        icon: icons.mdiShapeCirclePlus,
+        title: "userCreatePage",
+        icon: icons.mdiAccountPlus ,
     },
 
     {
-        title: "ROob",
-        icon: icons.mdiShapeCirclePlus,
+        title: "userLoginPage",
+        icon: icons.mdiAccountKey  ,
     },
 
     {
         title: "Create",
-        icon: icons.mdiShapeCirclePlus,
+        icon: icons.mdiContentSave ,
     },
 
     {
