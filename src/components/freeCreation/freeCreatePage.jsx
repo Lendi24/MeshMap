@@ -3,7 +3,7 @@ import React from 'react'
 
 return(
     <div>
-        freeCreatePage
+        freeCreatePage 
     </div>
 )
 

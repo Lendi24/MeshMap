@@ -11,7 +11,9 @@ import dropdowns    from '../../components/Input/TopBar/TopBar';
 import sketch from '../../app/p5'
 import { ReactP5Wrapper } from "react-p5-wrapper";
 import freeCreate from '../../components/freeCreation/freeCreatePage'
-import worldCreate from '../../components/worldCreation/worldCreationPage'
+import worldCreate from '../../components/worldCreation/worldCreationRender'
+import userCreate from '../../components/userCreateLogin/userCreate/userCreaterender'
+import userLogin from '../../components/userCreateLogin/userLogin/userLoginRender'
 import data from "../../../src/components/Input/ToolButton/data";
 import {selectNewTool} from "../../../src/components/Input/ToolButton/data";
 import Icon from '@mdi/react';
@@ -27,9 +29,12 @@ export default function Editor() {
     const pages:any = {
         freeCreatePage: freeCreate,
         worldCreationPage: worldCreate,
+        userCreatePage: userCreate,
+        userLoginPage: userLogin,
+
       };
       
-  const [currentPage,setCurrentPage] = React.useState("freeCreatePage");
+  const [currentPage,setCurrentPage] = React.useState("userCreatePage");
         
    const [Sidepage,Setpages] = React.useState(()=>pages[currentPage])
  
@@ -101,7 +106,7 @@ export default function Editor() {
                 <ReactP5Wrapper sketch={sketch} />
                 {/*<canvas id="drawing-area" className="z-10"></canvas>*/}
             </div>
-            <div className="w-60 bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur" id="side-section">
+            <div className="w-70 bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur" id="side-section">
                 <div className="" id="side-section-color"> {/*<!--Colour picker-->*/}
 
                 {Sidepage}
