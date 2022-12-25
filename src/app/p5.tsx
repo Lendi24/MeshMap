@@ -6,17 +6,12 @@ import { PathFindingDFS } from './PathFindingAlgorithms/DFS';
 import { PathFindingBFS } from './PathFindingAlgorithms/BFS'; 
 import {  AstarPath } from './PathFindingAlgorithms/AStarPathfinding'; 
 
-
-
-
-
 let gp5 : any;
 let w : number;
 let columns : any;
 let rows : any;
 let board : any;
 let locked = true;
-
 
 export function canvasSetPixel(x:number, y:number, pixel:Tile) {
   
@@ -28,6 +23,7 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
   canvasUpdate(); 
   console.log("put pixel") 
 }
+
 export function canvasGetPixel(x:number, y:number) { return board[x][y]; } 
 
 export default function sketch(p5: P5CanvasInstance) {
@@ -60,8 +56,6 @@ export default function sketch(p5: P5CanvasInstance) {
         canvasSetPixel(x,y,new Tile(board.grid[x][y].id))//obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa
       }
     }
-
-
     AstarPath(1,1,20,20,board)
     canvasUpdate();
   }
@@ -71,9 +65,6 @@ export function canvasUpdate() {
   gp5.background(255);
   for ( let i = 0; i < columns;i++) {
     for ( let j = 0; j < rows;j++) {     
-   
-
-      
       let color = board.grid[i][j].color()
       gp5.fill(color.rgbText)
       gp5.stroke(0);

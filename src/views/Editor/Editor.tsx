@@ -18,75 +18,49 @@ import data from "../../../src/components/Input/ToolButton/data";
 import {selectNewTool} from "../../../src/components/Input/ToolButton/data";
 import Icon from '@mdi/react';
 
-
-
-
-
-
-
 export default function Editor() {
    
-    const pages:any = {
-        freeCreatePage: freeCreate,
-        worldCreationPage: worldCreate,
-        userCreatePage: userCreate,
-        userLoginPage: userLogin,
-
-      };
+  const pages:any = {
+    freeCreatePage: freeCreate,
+    worldCreationPage: worldCreate,
+    userCreatePage: userCreate,
+    userLoginPage: userLogin,
+  };
       
-  const [currentPage,setCurrentPage] = React.useState("userCreatePage");
-        
-   const [Sidepage,Setpages] = React.useState(()=>pages[currentPage])
- 
-    
-    function MenuLoader() {
-
-
-      
-        function ToolButton(props:any) {
-            return (
-              <span
-                onClick={(e) => {
-                  selectNewTool(props.index, e.currentTarget);
-                  setCurrentPage(props.title);
-
-                }}
-                title={props.title}
-                className="text-white border-2 rounded hover:bg-green-700 hover:scale-110 transform transition-all w-10"
-              >
-                <Icon path={props.icon} />
-              </span>
-            );
-          }
+  const [currentPage,setCurrentPage] = React.useState("userCreatePage");      
+  const [Sidepage,Setpages] = React.useState(()=>pages[currentPage])
+   
+  function MenuLoader() {  
+    function ToolButton(props:any) { return (
+      <span
+        title={props.title}
+        className="text-white border-2 rounded hover:bg-green-700 hover:scale-110 transform transition-all w-10"
+        onClick={(e) => {
+          selectNewTool(props.index, e.currentTarget);
+          setCurrentPage(props.title);
+        }}
+      >
+        <Icon path={props.icon} />
+      </span>
+    );}
           
-        let toolsButtons = data.map((item, index) => {
-          return (
-            <ToolButton
-              key     =  {index+item.title}
-              index   =  {index}
-              title   =  {item.title}
-              icon    =  {item.icon}
-            />
-          )
-        })        
+    let toolsButtons = data.map((item, index) => { return (
+      <ToolButton
+        key     =  {index+item.title}
+        index   =  {index}
+        title   =  {item.title}
+        icon    =  {item.icon}
+      />
+    )});        
         // let CurrentPage = pages[currentPage]; 
 
-        React.useEffect(() => {
-            Setpages(pages[currentPage])
-        }, [currentPage]);
-          
-        
-          return (
-              <>
-            {toolsButtons}
-            </>
-          )
-        
-     }
+    React.useEffect(() => {
+      Setpages(pages[currentPage])
+    }, [currentPage]);
       
-   
- 
-        
+    return (<>{toolsButtons}</>);
+  }
+      
   return (
     <div className="flex flex-col h-screen m-0 z-1 overflow-y-hidden">
     
