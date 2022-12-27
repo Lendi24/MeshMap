@@ -5,7 +5,6 @@ export class Tile {
   visited : boolean = false;
   trace : boolean = false;
   wall : boolean = false;
-
   truePath : boolean = false;
   parent : any;
   terrainType: any;
@@ -23,5 +22,6 @@ export class Tile {
    color(){
     return {rgbText: this.rgbText};
   }
+
 }
   
