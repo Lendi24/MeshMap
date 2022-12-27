@@ -1,11 +1,13 @@
 import React from 'react'
- function worldCreate(){
+import WorldCreatePage from './worldCreationPage'
+ function worldCreateRender(){
+     
 
 return(
-    <div>
-        I AM WORLDCREATION PAGE
-    </div>
+  <div>
+      <WorldCreatePage/>
+  </div>
 )
 
 }
-export default worldCreate
+export default worldCreateRender
