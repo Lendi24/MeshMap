@@ -8,7 +8,6 @@ export class Tile {
   truePath : boolean = false;
   parent : any;
   terrainType: any;
-
   
   f : number = 0;
   g : number = 0;
@@ -18,13 +17,11 @@ export class Tile {
 
   constructor(id:number) {
     this.id = id;
-    
   }
 
    color(){
     return {rgbText: this.rgbText};
   }
-  
 
 }
   
