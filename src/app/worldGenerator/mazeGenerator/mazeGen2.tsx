@@ -59,7 +59,6 @@ export function backtrackingMaze(world:any) {
               break;
           cell = openCells.pop()
           cell.rgbText = "rgb(141,141,141)"
-          console.log("hello")
       } 
       while (world.exits.length == 0 && openCells.length > 0);
       
@@ -90,7 +89,3 @@ export function backtrackingMaze(world:any) {
 
   
 }
-
-
-
-

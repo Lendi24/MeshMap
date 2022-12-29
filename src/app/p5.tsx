@@ -45,10 +45,9 @@ export default function sketch(p5: P5CanvasInstance) {
     for (let i = 0; i < columns; i++) {
       board[i] = new Array(rows);
       for (let j = 0; j < rows; j++) {
-        board.grid[i][j] = new Tile(board.grid[i][j].id);
+        board.grid[i][j] = new Tile();
       }
     }
-    board.generateExits();
 
     canvas.elt.onmouseover = () => {locked = false;}
     canvas.elt.onmouseout  = () => {locked = true;}
@@ -58,11 +57,15 @@ export default function sketch(p5: P5CanvasInstance) {
         let target = e.target as HTMLElement;
         let x = Math.floor((e.x - target.offsetLeft) / w);
         let y = Math.floor((e.y - target.offsetTop ) / w);
-        canvasSetPixel(x,y,new Tile(board.grid[x][y].id))//obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa, Va fan menade jag -Enok
+        canvasSetPixel(x,y,new Tile())//obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa, Va fan menade jag -Enok
       }
     }
-    generateMaze3(board)
-    AstarPath(5,5,40,40,board)
+
+    board.generateRoom(5,5,4,4)
+    board.generateRoom(25,25,5,5)
+
+    board.generateExits();
+
     console.log(board.grid)
     canvasUpdate();
   }

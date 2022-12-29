@@ -1,9 +1,9 @@
 export class Tile {
 
   rgbText: string = "rgb(255,255,255)";
-  id : number;
   visited : boolean = false;
   trace : boolean = false;
+  room : boolean = false;
   wall : boolean = false;
   truePath : boolean = false;
   parent : any;
@@ -16,8 +16,8 @@ export class Tile {
 
   exits:any[];
 
-  constructor(id:number) {
-    this.id = id;
+  constructor() {
+   
   }
 
    color(){
@@ -26,3 +26,4 @@ export class Tile {
 
 }
   
+

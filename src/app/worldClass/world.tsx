@@ -1,14 +1,14 @@
 import React from "react";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { Tile } from '../tiles/Tile'; 
+import {RoomTile} from '../tiles/TileRoom'
 import { canvasUpdate } from '../p5'; 
 
 export class World {
     cols : number;
     rows :number;
     rooms:number;  
-    grid: Tile[][];
-
+    grid: any[][];
     constructor(cols:number, rows:number, nodesize:number){
         this.cols = cols;
         this.rows = rows;
@@ -19,17 +19,44 @@ export class World {
         for (let j = 0; j < cols; j++) {
           
            for (let i = 0; i < rows; i++) {
-                this.grid[j][i] = new Tile(i+cols*j)
+                this.grid[j][i] = new Tile()
           }
         }
     
       }
     
-    // generateMazeExits(){
+    generateRoom(col:any,row:any,length:any,height:any){
+        this.rooms++;
+        let placeRoom:any = true;
+        const roomNode = new RoomTile(this.rooms)
 
+       
       
-    // }
+          for (let j = col; j < length+col; j++) {
+    
+            for (let i = row; i < height+col; i++) {
+               if (this.grid[j][i] instanceof RoomTile) {
+                console.log("HELLO")
+                placeRoom = false;
+                return alert("unable to place room on an existing room")
+               }
+           }
+         }
+        
 
+
+        if(placeRoom){
+          for (let j = col; j < length+col; j++) {
+    
+            for (let i = row; i < height+col; i++) {
+                  this.grid[j][i] = roomNode;
+                  this.grid[j][i].rgbText = "rgb(100,100,100)"
+           }
+         }
+        }
+     
+    
+      }
 
     generateExits(){
       for (let j = 0; j < this.cols; j++) {
@@ -48,11 +75,12 @@ export class World {
           if ( this.grid[j] [i + 1] ) { bottom = this.grid[j ]   [i + 1];  } 
           if ( this.grid[j - 1]     ) { left = this.grid[j - 1]  [i];      } 
           
-          if (top     && !top.visited)     {this.grid[j][i].exits.push(top);   }
-          if (right   && !right.visited)   {this.grid[j][i].exits.push(right);  }
-          if (bottom  && !bottom.visited)  {this.grid[j][i].exits.push(bottom); }
-          if (left    && !left.visited)    {this.grid[j][i].exits.push(left);   }
+          if (top     && !top.visited && !top.roomId)     {this.grid[j][i].exits.push(top);   }
+          if (right   && !right.visited && !right.roomId)   {this.grid[j][i].exits.push(right);  }
+          if (bottom  && !bottom.visited&& !bottom.roomId)  {this.grid[j][i].exits.push(bottom); }
+          if (left    && !left.visited && !left.roomId)    {this.grid[j][i].exits.push(left);   }
         }
       } 
     }
   }
+
