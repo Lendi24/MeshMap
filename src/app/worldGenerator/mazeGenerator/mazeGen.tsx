@@ -20,7 +20,7 @@ export function generateMaze(x1:any,y1:any, world:any) {
   for ( let i = 0; i < world.cols;i++) {
     for ( let j = 0; j < world.rows;j++) {     
      
-      world.grid[i][j] = new Tile(i+world.cols*j)
+      world.grid[i][j] = new Tile()
       world.grid[i][j].wall = true;
       world.grid[i][j].rgbText = "rgb(147,141,124)";
 
@@ -266,4 +266,3 @@ export function generateMaze(x1:any,y1:any, world:any) {
   //   } 
 
 }
-

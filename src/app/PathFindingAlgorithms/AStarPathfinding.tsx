@@ -1,3 +1,5 @@
+import { RoomTile } from "../tiles/TileRoom";
+
 export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   
   let openSet =[];
@@ -8,8 +10,8 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   let end:any = world.grid[x2][y2];
 
   start.wall = false
-  start.rgbText = "rgb(255,255,255)"
-  end.rgbText = "rgb(255,255,255)"
+  start.rgbText = "rgb(0,255,0)"
+  end.rgbText = "rgb(255,0,0)"
   end.wall = false
 
 
@@ -64,7 +66,7 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
     if (openSet[winner] == end) {   
       if (current == end ) { 
         do {
-          current.trace = true;
+          
           current.rgbText="rgb(170, 255, 0)";
           bestPath.push(current)
            
@@ -104,4 +106,5 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
     }
   }
 }
- 
+
+
