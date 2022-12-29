@@ -1,6 +1,10 @@
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
+//import {setPage} from '../../../views/Editor/Editor' ;
 import React from 'react'
+import { FunctionBody } from 'typescript';
+
+import { setToolConfigState } from '../SideBar/ToolConfig'
 
 let selectedTool
 let selectedToolHtml:HTMLElement
@@ -58,11 +62,18 @@ let tools = {
 // = tools[0];
 
 
-function selectNewTool(toolID:any, elem:HTMLElement) {
+function selectNewTool(toolID:any, elem:HTMLElement, setState:any) {
+    
+    setState(toolID)
+
     if (selectedToolHtml) { selectedToolHtml.style.backgroundColor = "";}
     elem.style.backgroundColor = "red";
     selectedTool = pageTools[toolID];
     selectedToolHtml = elem;
+
+    setToolConfigState(toolID);
+
+    //updatePageFunc(pageTools[toolID].title);
 }
 
 

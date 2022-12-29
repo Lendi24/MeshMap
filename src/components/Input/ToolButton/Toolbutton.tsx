@@ -4,10 +4,34 @@ import Icon from '@mdi/react';
 import React from "react";
 import { mdiTools } from "@mdi/js";
 
+
+/**/
+import freeCreate from '../../../components/freeCreation/freeCreatePage'
+import worldCreate from '../../../components/worldCreation/worldCreationRender'
+import userCreate from '../../../components/userCreateLogin/userCreate/userCreaterender'
+import userLogin from '../../../components/userCreateLogin/userLogin/userLoginRender'
+  /**/
+
+
+  /**/
+  const pages:any = {
+    freeCreatePage: freeCreate,
+    worldCreationPage: worldCreate,
+    userCreatePage: userCreate,
+    userLoginPage: userLogin,
+  };
+  
+  
+  
+
+  /**/
 function ToolButton(props:any) {
+    const [selectedToolId, setToolId] = React.useState(0);      
+    //const [Sidepage,Setpages] = React.useState(()=>pages[currentPage]);
+
     return (
         <span 
-            onClick={(e)=>{selectNewTool(props.index,e.currentTarget)}}
+            onClick={(e)=>{ selectNewTool(props.index, e.currentTarget, setToolId); }}
             title={props.title} 
             className="
                 text-white 
