@@ -8,6 +8,7 @@ export class Tile {
   truePath : boolean = false;
   parent : any;
   terrainType: any;
+  path : boolean = false;
   
   f : number = 0;
   g : number = 0;
