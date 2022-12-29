@@ -5,7 +5,7 @@ import './Editor.css'
 
 //Json data for components
 import tools        from '../../components/Input/ToolButton/Toolbutton'
-import sidebar      from '../../components/Input/SideBar/ToolConfig'
+import ToolConf      from '../../components/Input/SideBar/ToolConfig'
 import dropdowns    from '../../components/Input/TopBar/TopBar'
 
 //p5 canvas
@@ -35,7 +35,7 @@ export default function Editor() {
             </div>
             <div className="w-60 bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur" id="side-section">
                 <div className="" id="side-section-color"> {/*<!--Colour picker-->*/}
-                  { sidebar }
+                  <ToolConf />
                 </div>
                 
                 <div className="min-w-5" > {/*<!--Tool settings-->*/}</div>

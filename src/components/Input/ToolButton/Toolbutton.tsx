@@ -26,7 +26,7 @@ import userLogin from '../../../components/userCreateLogin/userLogin/userLoginRe
 
   /**/
 function ToolButton(props:any) {
-    const [selectedToolId, setToolId] = React.useState(0);      
+    const [selectedToolId, setToolId] = React.useState(() => {return 0;});      
     //const [Sidepage,Setpages] = React.useState(()=>pages[currentPage]);
 
     return (
