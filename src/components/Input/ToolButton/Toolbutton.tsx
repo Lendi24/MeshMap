@@ -5,9 +5,6 @@ import React from "react";
 import { mdiTools } from "@mdi/js";
 
 function ToolButton(props:any) {
-
-    
-   
     return (
         <span 
             onClick={(e)=>{selectNewTool(props.index,e.currentTarget)}}
@@ -36,8 +33,6 @@ export default data.map((item, index) => {
     )
 })        
 
-
 function tool(props: any) {
     throw new Error("Function not implemented.");
 }
-

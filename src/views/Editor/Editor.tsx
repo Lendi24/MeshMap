@@ -28,8 +28,9 @@ export default function Editor() {
   };
       
   const [currentPage,setCurrentPage] = React.useState("userCreatePage");      
-  const [Sidepage,Setpages] = React.useState(()=>pages[currentPage])
+  const [Sidepage,Setpages] = React.useState(()=>pages[currentPage]);
    
+  /*
   function MenuLoader() {  
     function ToolButton(props:any) { return (
       <span
@@ -59,7 +60,7 @@ export default function Editor() {
     }, [currentPage]);
       
     return (<>{toolsButtons}</>);
-  }
+  }*/
       
   return (
     <div className="flex flex-col h-screen m-0 z-1 overflow-y-hidden">
@@ -73,7 +74,7 @@ export default function Editor() {
         <div className="flex flex-grow m-0 overflow-hidden bg-green-600 justify-between">
             <div className="bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur">{/*<!--Tools-->*/}
                 <div className="space-y-3" id="tool-section">
-                    {MenuLoader()}
+                    {/*MenuLoader()*/}
                 </div>
             </div> 
             <div className="w-full h-full m-0 flex justify-center items-center">

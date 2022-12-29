@@ -4,34 +4,30 @@ import React from 'react'
 
 let selectedTool
 let selectedToolHtml:HTMLElement
-
-
-
-
- let pageTools = [
+let pageTools = [
     {
-        title: "freeCreatePage",
-        icon: icons.mdiCursorDefault,
+        title:  "freeCreatePage",
+        icon:   icons.mdiCursorDefault,
     },
 
     {
-        title: "worldCreationPage",
-        icon: icons.mdiEarthPlus  ,
+        title:  "worldCreationPage",
+        icon:   icons.mdiEarthPlus  ,
     },
 
     {
-        title: "userCreatePage",
-        icon: icons.mdiAccountPlus ,
+        title:  "userCreatePage",
+        icon:   icons.mdiAccountPlus ,
     },
 
     {
-        title: "userLoginPage",
-        icon: icons.mdiAccountKey  ,
+        title:  "userLoginPage",
+        icon:   icons.mdiAccountKey  ,
     },
 
     {
-        title: "Create",
-        icon: icons.mdiContentSave ,
+        title:  "Create",
+        icon:   icons.mdiContentSave ,
     },
 
     {
@@ -39,10 +35,6 @@ let selectedToolHtml:HTMLElement
         icon: icons.mdiShapeCirclePlus,
     },
 
-    {
-        title: "Create",
-        icon: icons.mdiShapeCirclePlus,
-    },
 
 /*
     { 
