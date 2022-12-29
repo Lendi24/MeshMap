@@ -7,6 +7,13 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   let start:any = world.grid[x1][y1];
   let end:any = world.grid[x2][y2];
 
+  start.wall = false
+  start.rgbText = "rgb(255,255,255)"
+  end.rgbText = "rgb(255,255,255)"
+  end.wall = false
+
+
+
   openSet.push(start);
 
   for (let j = 0; j < world.cols; j++) {

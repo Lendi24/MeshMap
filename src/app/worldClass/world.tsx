@@ -25,8 +25,15 @@ export class World {
     
       }
     
+    // generateMazeExits(){
+
+      
+    // }
+
+
     generateExits(){
       for (let j = 0; j < this.cols; j++) {
+        
         for (let i = 0; i < this.rows; i++) {
           this.grid[j][i].exits = []
         }
@@ -34,13 +41,14 @@ export class World {
 
       for (let j = 0; j < this.cols; j++) {          
         for (let i = 0; i < this.rows; i++) {
+
           let top, bottom, left, right;
           if ( this.grid[j] [i - 1] ) { top = this.grid[j]       [i - 1];  } 
           if ( this.grid[j + 1]     ) { right = this.grid[j + 1] [i];      } 
           if ( this.grid[j] [i + 1] ) { bottom = this.grid[j ]   [i + 1];  } 
           if ( this.grid[j - 1]     ) { left = this.grid[j - 1]  [i];      } 
           
-          if (top     && !top.visited)     {this.grid[j][i].exits.push(top);    }
+          if (top     && !top.visited)     {this.grid[j][i].exits.push(top);   }
           if (right   && !right.visited)   {this.grid[j][i].exits.push(right);  }
           if (bottom  && !bottom.visited)  {this.grid[j][i].exits.push(bottom); }
           if (left    && !left.visited)    {this.grid[j][i].exits.push(left);   }

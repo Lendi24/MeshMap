@@ -5,6 +5,12 @@ import { World } from './worldClass/world';
 import { PathFindingDFS } from './PathFindingAlgorithms/DFS'; 
 import { PathFindingBFS } from './PathFindingAlgorithms/BFS'; 
 import {  AstarPath } from './PathFindingAlgorithms/AStarPathfinding'; 
+import { generateMaze } from './worldGenerator/mazeGenerator/mazeGen';
+import { generateMaze3 } from './worldGenerator/mazeGenerator/mazeGen3';
+
+import { backtrackingMaze } from './worldGenerator/mazeGenerator/mazeGen2';
+
+
 
 let gp5 : any;
 let w : number;
@@ -43,7 +49,6 @@ export default function sketch(p5: P5CanvasInstance) {
       }
     }
     board.generateExits();
-    console.log(board.grid)
 
     canvas.elt.onmouseover = () => {locked = false;}
     canvas.elt.onmouseout  = () => {locked = true;}
@@ -53,10 +58,12 @@ export default function sketch(p5: P5CanvasInstance) {
         let target = e.target as HTMLElement;
         let x = Math.floor((e.x - target.offsetLeft) / w);
         let y = Math.floor((e.y - target.offsetTop ) / w);
-        canvasSetPixel(x,y,new Tile(board.grid[x][y].id))//obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa
+        canvasSetPixel(x,y,new Tile(board.grid[x][y].id))//obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa, Va fan menade jag -Enok
       }
     }
-    AstarPath(1,1,20,20,board)
+    generateMaze3(board)
+    AstarPath(5,5,40,40,board)
+    console.log(board.grid)
     canvasUpdate();
   }
 }
