@@ -5,6 +5,7 @@ export class Tile {
   trace : boolean = false;
   room : boolean = false;
   wall : boolean = false;
+  walkable : boolean = false;
   truePath : boolean = false;
   parent : any;
   terrainType: any;
