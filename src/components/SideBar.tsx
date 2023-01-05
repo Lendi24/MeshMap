@@ -7,7 +7,7 @@ import ConfigSelect from './SideBar/ConfigSelect';
 
 interface SideBarState {
     selectedToolId : number;
-  }
+}
   
 class SideBar extends React.Component { 
     toolIdPrefix = "toolId-";
