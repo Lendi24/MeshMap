@@ -10,6 +10,7 @@ let pageTools = [
 
         conf : {
             testslid : {
+                icon:   icons.mdiCursorDefault,    
                 type : "slider",
                 value : 10,
                 floor : 1,
