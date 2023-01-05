@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 
 class ToolConf extends React.Component {
+    /*
     constructor(){
         super();
         this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-    };
+    };*/
       
     forceUpdateHandler(){
         this.forceUpdate();

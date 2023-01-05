@@ -4,9 +4,12 @@ import { Outlet, Link } from "react-router-dom";
 import './Editor.css'
 
 //Json data for components
-import tools        from '../../components/Input/ToolButton/Toolbutton'
-import ToolConf      from '../../components/Input/SideBar/ToolConfig'
-import dropdowns    from '../../components/Input/TopBar/TopBar'
+
+
+import tools        from '../../components/old/Input/ToolButton/Toolbutton';
+import ToolConf     from '../../components/old/Input/SideBar/ToolConfig';
+import dropdowns    from '../../components/old/Input/TopBar/TopBar';
+
 
 //p5 canvas
 import sketch from '../../app/p5'

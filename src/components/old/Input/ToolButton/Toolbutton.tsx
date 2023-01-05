@@ -6,10 +6,10 @@ import { mdiTools } from "@mdi/js";
 
 
 /**/
-import freeCreate from '../../../components/freeCreation/freeCreatePage'
-import worldCreate from '../../../components/worldCreation/worldCreationRender'
-import userCreate from '../../../components/userCreateLogin/userCreate/userCreaterender'
-import userLogin from '../../../components/userCreateLogin/userLogin/userLoginRender'
+import freeCreate from '../../../../components/old/freeCreation/freeCreatePage'
+import worldCreate from '../../../../components/old/worldCreation/worldCreationRender'
+import userCreate from '../../../../components/old/userCreateLogin/userCreate/userCreaterender'
+import userLogin from '../../../../components/old/userCreateLogin/userLogin/userLoginRender'
   /**/
 
 
