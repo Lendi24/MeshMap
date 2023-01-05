@@ -10,6 +10,8 @@ import tools        from '../../components/old/Input/ToolButton/Toolbutton';
 import ToolConf     from '../../components/old/Input/SideBar/ToolConfig';
 import dropdowns    from '../../components/old/Input/TopBar/TopBar';
 
+import ComponentSideBar      from '../../components/SideBar';
+
 
 //p5 canvas
 import sketch from '../../app/p5'
@@ -19,7 +21,6 @@ export default function Editor() {
 
   return (
     <div className="flex flex-col h-screen m-0 z-1 overflow-y-hidden">
-    
         <nav className="flex flex-row space-x-1 z-30" id="top-bar">
             <span className="mdi mdi-brush ml-3"></span>
             <div id="dropdowns"> {dropdowns} </div>
@@ -27,11 +28,16 @@ export default function Editor() {
         </nav>
 
         <div className="flex flex-grow m-0 overflow-hidden bg-green-600 justify-between">
-            <div className="bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur">{/*<!--Tools-->*/}
+            < ComponentSideBar />
+
+            {/*
+            <div className="bg-gray-600 z-20 bg-opacity-60 bg-blur-sm background-blur">{/*<!--Tools-->}    
                 <div className="space-y-3" id="tool-section">
                     { tools }
                 </div>
             </div> 
+            */}
+            
             <div className="w-full h-full m-0 flex justify-center items-center">
                 <ReactP5Wrapper sketch={sketch} />
                 {/*<canvas id="drawing-area" className="z-10"></canvas>*/}
