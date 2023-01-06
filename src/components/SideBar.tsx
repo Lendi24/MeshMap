@@ -20,16 +20,13 @@ class SideBar extends React.Component {
     }
     
     handleChange(e:MouseEvent) {
+        //Gets old tool and removes highlighting
         let newButton = document.getElementById(`${this.toolIdPrefix}${(this.state as SideBarState).selectedToolId}`);
         if (newButton) newButton.style.color = "";
 
+        //Updates internal state for storing current tool id and adding highlighting for correct tool
         if (e.target) this.setState({selectedToolId: (e.target as HTMLSpanElement).id.replace(`${this.toolIdPrefix}`,'')});
         if (e.target) (e.target as HTMLSpanElement).style.color = "red";
-
-        
-
-        console.log(e.target)
-        
     }
     
     render() {
