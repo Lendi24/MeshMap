@@ -1,6 +1,7 @@
 import Icon from '@mdi/react';
 
 interface ToolState {
+    id      :   string
     key     :   string
     index   :   number
     title   :   string
@@ -17,6 +18,7 @@ function ToolButton(props:ToolState) {
         <span 
             onClick={(e)=>{ props.onClick(e); }}
             title={props.title} 
+            id={props.id}
             className="
                 text-white 
                 border-2 
@@ -25,7 +27,7 @@ function ToolButton(props:ToolState) {
                 hover:scale-110 
                 transform transition-all 
                 w-10" >
-            <Icon path={props.icon}></Icon>
+            <Icon path={props.icon} className="pointer-events-none "></Icon>
         </span>
     )
 }

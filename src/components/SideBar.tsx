@@ -20,7 +20,16 @@ class SideBar extends React.Component {
     }
     
     handleChange(e:MouseEvent) {
+        let newButton = document.getElementById(`${this.toolIdPrefix}${(this.state as SideBarState).selectedToolId}`);
+        if (newButton) newButton.style.color = "";
+
         if (e.target) this.setState({selectedToolId: (e.target as HTMLSpanElement).id.replace(`${this.toolIdPrefix}`,'')});
+        if (e.target) (e.target as HTMLSpanElement).style.color = "red";
+
+        
+
+        console.log(e.target)
+        
     }
     
     render() {
