@@ -8,7 +8,7 @@ import {  AstarPath } from './PathFindingAlgorithms/AStarPathfinding';
 import { generateMaze } from './worldGenerator/mazeGenerator/mazeGen';
 import { generateMaze3 } from './worldGenerator/mazeGenerator/mazeGen3';
 import { generateCircular } from './worldGenerator/circularWorld/circularGen'
-
+import {dungeonGen} from './worldGenerator/dungeonWorld/dungeonGen'
 import { backtrackingMaze } from './worldGenerator/mazeGenerator/mazeGen2';
 
 
@@ -63,10 +63,12 @@ export default function sketch(p5: P5CanvasInstance) {
     }
 
     
-    generateCircular(20,20,15,board,6)
-    board.generateExits();
-    AstarPath(20,5,20,35,board)
+    // generateCircular(20,20,10,board,4)
+    dungeonGen(10,3,10,3,20,board)
 
+
+    board.generateExits()
+    
     console.log(board.grid)
     canvasUpdate();
   }
