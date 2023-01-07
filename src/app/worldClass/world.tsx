@@ -9,12 +9,15 @@ export class World {
     rows :number;
     rooms:number;  
     grid: any[][];
+    currentRooms: any[];
     constructor(cols:number, rows:number, nodesize:number){
         this.cols = cols;
         this.rows = rows;
         this.rooms =0;
         this.grid = [];
+        this.currentRooms = [];
 
+      
         this.grid = new Array(cols).fill(null).map( ()=> new Array(rows).fill(null));
         for (let j = 0; j < cols; j++) {
           
@@ -46,22 +49,33 @@ export class World {
 
        
       if (validRange) {
-        for (let j = cornerX; j < length+cornerX; j++) {
+        if (cornerX-1>0 && cornerY-1>0 ) {
+          for (let j = cornerX-1; j < length+cornerX +1 ; j++) {
     
-          for (let i = cornerY; i < height+cornerY; i++) {
-               if (this.grid[j][i] instanceof RoomTile) {
-                console.log("HELLO")
-                placeRoom = false;
-                return;
-               }
+            for (let i = cornerY-1; i < height+cornerY+1; i++) {//Idk how or why but if you take the three first condittions and add them to to the third if statment from here. You get cool dungeon
+                 if (typeof this.grid[j] == 'undefined'||  typeof this.grid[j][i]== 'undefined' ||  typeof this.grid[j][i-1]== 'undefined' ||this.grid[j][i] instanceof RoomTile ) {
+                  console.log("HELLO")
+                  placeRoom = false;
+                  return;
+                 }
+             }
            }
-         }
+          
+        }
+        
     
         if(placeRoom){
+          this.currentRooms.push(roomNode)
+
           for (let j = cornerX; j < length+cornerX; j++) {    
             for (let i = cornerY; i < height+cornerY; i++) {
+       
+              if (j>0 && j<this.cols && i>0 && i<this.rows) {
                 this.grid[j][i] = roomNode;
-                  this.grid[j][i].rgbText = "rgb(100,100,100)"
+                this.grid[j][i].rgbText = "rgb(100,100,100)"
+
+
+              }
            }
          }
         }
@@ -100,7 +114,7 @@ export class World {
             
             
           } else {
-          if (this.grid[j][i].walkable) {
+        
             let top, bottom, left, right;
             if ( this.grid[j] [i - 1] ) { top = this.grid[j]       [i - 1];  } 
             if ( this.grid[j + 1]     ) { right = this.grid[j + 1] [i];      } 
@@ -111,7 +125,7 @@ export class World {
             if (right   && !right.visited )   {this.grid[j][i].exits.push(right);  }
             if (bottom  && !bottom.visited)  {this.grid[j][i].exits.push(bottom); }
             if (left    && !left.visited )    {this.grid[j][i].exits.push(left);   }
-          }
+          
           
             
           }
