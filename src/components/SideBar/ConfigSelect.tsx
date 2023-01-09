@@ -51,6 +51,10 @@ function ConfigSelect(props:ConfigSelectState) {
                         id      =  {"index"+"selector"}
                         key     =  {key}
                         title   =  {key}
+
+                        val      =  {selector.value}
+
+                        onChange =  {(e:any)=>{selector.value=(e.target.checked)}}
                     />
                 )        
                 break;
@@ -59,7 +63,6 @@ function ConfigSelect(props:ConfigSelectState) {
                 console.error(`Error! Input type "${selector.type}" is not supported.`)
                 break;
         }
-        console.log(props.selectors[key])
     }
 
 

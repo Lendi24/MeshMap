@@ -14,18 +14,12 @@ let pageTools = [
                 type : "slider",
                 value : 10,
                 floor : 1,
-                step  : 1,
                 roof  : 20,
             },
 
-            testbox : {
+            testböx : {
                 type : "box",
-                value : 1,
-            },
-
-            num : {
-                type : "text",
-                value : 1,
+                value : 0,
             },
         },
     },
@@ -41,7 +35,6 @@ let pageTools = [
                 type : "slider",
                 value : 10,
                 floor : 1,
-                step  : 1,
                 roof  : 20,
             },
 
@@ -63,7 +56,6 @@ let pageTools = [
                 type : "slider",
                 value : 10,
                 floor : 1,
-                step  : 1,
                 roof  : 20,
             },
 
@@ -85,7 +77,6 @@ let pageTools = [
                 type : "slider",
                 value : 10,
                 floor : 1,
-                step  : 1,
                 roof  : 20,
             },
 
@@ -108,7 +99,6 @@ let pageTools = [
                 type : "slider",
                 value : 10,
                 floor : 1,
-                step  : 1,
                 roof  : 20,
             },
 
@@ -130,7 +120,6 @@ let pageTools = [
                 type : "slider",
                 value : 10,
                 floor : 1,
-                step  : 1,
                 roof  : 20,
             },
 

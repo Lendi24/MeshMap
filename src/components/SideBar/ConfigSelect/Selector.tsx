@@ -10,8 +10,12 @@ interface SelectorStateSlider {
 }
 
 interface SelectorStateBox {
+    onChange:   Function,
+
     id      :   string,
     title   :   string,
+
+    val     :   boolean,
 }
 
 
@@ -60,11 +64,15 @@ export function ConfigSelectorBox(props:SelectorStateBox) {
             <b className="m-2">
                 {props.title}
             </b>
-            <input 
-                //onClick={(e)=>{ props.onClick(e); }}
+            <input
+                onChange={(e)=>{ props.onChange(e); }} 
+                //onChange={(e)=>{ console.log(e.target.checked) }}
                 //title={props.title} 
                 id={props.id}
                 type="checkbox"
+
+                defaultChecked    = {props.val}
+
                 className="
                     border-2 
                     m-2
