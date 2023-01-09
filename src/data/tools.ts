@@ -1,6 +1,6 @@
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
-
+import {canvasSetPixel, canvasSetPixelColor} from '../app//p5'
 
 let pageToolIndex = 0;
 
@@ -29,8 +29,8 @@ let pageTools = [
             },
         },
 
-        logic : ()=>{
-            
+        logic : (x:number,y:number)=>{
+            console.log("select");
         }
     },
 
@@ -54,8 +54,8 @@ let pageTools = [
             },
         },
 
-        logic : ()=>{
-            
+        logic : (x:number,y:number)=>{
+            canvasSetPixelColor(x,y,"rgb(255,0,0)")
         }
     },
 

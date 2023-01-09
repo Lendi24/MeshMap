@@ -11,7 +11,7 @@ import { generateCircular } from './worldGenerator/circularWorld/circularGen'
 import {dungeonGen} from './worldGenerator/dungeonWorld/dungeonGen'
 import { backtrackingMaze } from './worldGenerator/mazeGenerator/mazeGen2';
 
-
+import {getTool} from '../data/tools'
 
 let gp5 : any;
 let w : number;
@@ -30,6 +30,18 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
   canvasUpdate(); 
   //console.log("put pixel") 
 }
+
+export function canvasSetPixelColor(x:number, y:number, rgb:string) {
+  
+  //board.grid[x][y] = pixel; 
+  board.grid[x][y].rgbText = rgb;
+  //console.log( board.grid[x][y])
+  board.generateExits();//Hittade inget bättre sätt att uppdatera pixlarna än att köra en ny generateExits För allt. Däremot måste det ändras beroende på vad vil vill generera
+
+  canvasUpdate(); 
+  //console.log("put pixel") 
+}
+
 
 export function canvasGetPixel(x:number, y:number) { return board[x][y]; } 
 
@@ -58,7 +70,12 @@ export default function sketch(p5: P5CanvasInstance) {
         let target = e.target as HTMLElement;
         let x = Math.floor((e.x - target.offsetLeft) / w);
         let y = Math.floor((e.y - target.offsetTop ) / w);
-        canvasSetPixel(x,y,new Tile())//obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa, Va fan menade jag -Enok
+        
+        getTool().logic.call("oi",x,y);
+        
+        //canvasSetPixel(x,y,new Tile());
+
+        //obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa, Va fan menade jag -Enok
       }
     }
 
