@@ -5,6 +5,11 @@ import tools from "../data/tools";
 import ToolSelect   from './SideBar/ToolSelect';
 import ConfigSelect from './SideBar/ConfigSelect';
 
+interface SidebarTool {
+    data : any
+    conf : any
+}
+
 interface SideBarState {
     selectedToolId : number;
 }
@@ -21,8 +26,8 @@ class SideBar extends React.Component {
     
     handleChange(e:MouseEvent) {
         //Gets old tool and removes highlighting
-        let newButton = document.getElementById(`${this.toolIdPrefix}${(this.state as SideBarState).selectedToolId}`);
-        if (newButton) newButton.style.color = "";
+        let oldButton = document.getElementById(`${this.toolIdPrefix}${(this.state as SideBarState).selectedToolId}`);
+        if (oldButton) oldButton.style.color = "";
 
         //Updates internal state for storing current tool id and adding highlighting for correct tool
         if (e.target) this.setState({selectedToolId: (e.target as HTMLSpanElement).id.replace(`${this.toolIdPrefix}`,'')});
@@ -38,13 +43,11 @@ class SideBar extends React.Component {
                     toolsIdPrefix={this.toolIdPrefix}
                 />
                 <ConfigSelect   
-                    toolConf={tools[ (this.state as SideBarState).selectedToolId ]}
+                    selectors={(tools[ (this.state as SideBarState).selectedToolId ] as SidebarTool).conf}
                 />
             </div>
         );
     }    
 }
-
-
 
 export default SideBar;
