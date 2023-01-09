@@ -14,7 +14,7 @@ export default ConfigSelect;
 
 
 import React from 'react';
-import ConfigSelector from './ConfigSelect/Selector';
+import {ConfigSelectorSlider, ConfigSelectorBox} from './ConfigSelect/Selector';
 
 interface ConfigSelectState {
     selectors:any;
@@ -24,14 +24,41 @@ function ConfigSelect(props:ConfigSelectState) {
     let selectors = [];
 
     for (const key in props.selectors) {
-        selectors.push
-        (
-            <ConfigSelector
-                id      =  {"index"+"selector"}
-                key     =  {key}
-                title   =  {key}
-            />
-        )
+        const selector = props.selectors[key];
+
+        switch (selector.type) {
+            case "slider":
+                selectors.push
+                (
+                    <ConfigSelectorSlider
+                        id        =  {"index"+"selector"}
+                        key       =  {key}
+                        title     =  {key}
+
+                        min      =  {selector.floor}
+                        val      =  {selector.value}
+                        max      =  {selector.roof}
+
+                        onChange =  {(e:any)=>{selector.value=(e.target.value)}}
+                    />
+                )        
+                break;
+
+            case "box":
+                selectors.push
+                (
+                    <ConfigSelectorBox
+                        id      =  {"index"+"selector"}
+                        key     =  {key}
+                        title   =  {key}
+                    />
+                )        
+                break;
+            
+            default:
+                console.error(`Error! Input type "${selector.type}" is not supported.`)
+                break;
+        }
         console.log(props.selectors[key])
     }
 

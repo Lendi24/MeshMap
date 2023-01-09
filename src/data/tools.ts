@@ -22,6 +22,11 @@ let pageTools = [
                 type : "box",
                 value : 1,
             },
+
+            num : {
+                type : "text",
+                value : 1,
+            },
         },
     },
 
