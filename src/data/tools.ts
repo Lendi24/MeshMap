@@ -4,12 +4,12 @@ import '@mdi/js';
 let pageTools = [
     {
         data : {
-            title:  "freeCreatePage",
+            title:  "Select",
             icon:   icons.mdiCursorDefault,    
         },
 
         conf : {
-            testslid : {
+            SelectProp : {
                 icon:   icons.mdiCursorDefault,    
                 type : "slider",
                 value : 10,
@@ -27,8 +27,8 @@ let pageTools = [
 
     {
         data : {
-            title:  "worldCreationPage",
-            icon:   icons.mdiEarthPlus  ,    
+            title:  "Draw",
+            icon:   icons.mdiPen  ,    
         },
 
         conf : {

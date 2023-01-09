@@ -1,6 +1,6 @@
 interface SliderSelectorState {
-    id      :   string
-    index   :   number
+    id      :   string,
+    title   :   string,
 }
 
 
@@ -9,13 +9,12 @@ function ConfigSelector(props:SliderSelectorState) {
     return (
         <div className="
             border-2 
-            m-2
             rounded 
             flex 
             flex-col
             flex-grow" >
             <b className="m-2">
-                Title
+                {props.title}
             </b>
             <input 
                 //onClick={(e)=>{ props.onClick(e); }}
