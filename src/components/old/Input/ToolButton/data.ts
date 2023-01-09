@@ -1,37 +1,37 @@
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
+//import {setPage} from '../../../views/Editor/Editor' ;
 import React from 'react'
+import { FunctionBody } from 'typescript';
+
+import { setToolConfigState } from '../SideBar/ToolConfig'
 
 let selectedTool
 let selectedToolHtml:HTMLElement
-
-
-
-
- let pageTools = [
+let pageTools = [
     {
-        title: "freeCreatePage",
-        icon: icons.mdiCursorDefault,
+        title:  "freeCreatePage",
+        icon:   icons.mdiCursorDefault,
     },
 
     {
-        title: "worldCreationPage",
-        icon: icons.mdiEarthPlus  ,
+        title:  "worldCreationPage",
+        icon:   icons.mdiEarthPlus  ,
     },
 
     {
-        title: "userCreatePage",
-        icon: icons.mdiAccountPlus ,
+        title:  "userCreatePage",
+        icon:   icons.mdiAccountPlus ,
     },
 
     {
-        title: "userLoginPage",
-        icon: icons.mdiAccountKey  ,
+        title:  "userLoginPage",
+        icon:   icons.mdiAccountKey  ,
     },
 
     {
-        title: "Create",
-        icon: icons.mdiContentSave ,
+        title:  "Create",
+        icon:   icons.mdiContentSave ,
     },
 
     {
@@ -39,10 +39,6 @@ let selectedToolHtml:HTMLElement
         icon: icons.mdiShapeCirclePlus,
     },
 
-    {
-        title: "Create",
-        icon: icons.mdiShapeCirclePlus,
-    },
 
 /*
     { 
@@ -66,11 +62,18 @@ let tools = {
 // = tools[0];
 
 
-function selectNewTool(toolID:any, elem:HTMLElement) {
+function selectNewTool(toolID:any, elem:HTMLElement, setState:any) {
+    
+    setState(toolID)
+
     if (selectedToolHtml) { selectedToolHtml.style.backgroundColor = "";}
     elem.style.backgroundColor = "red";
     selectedTool = pageTools[toolID];
     selectedToolHtml = elem;
+
+    setToolConfigState(toolID);
+
+    //updatePageFunc(pageTools[toolID].title);
 }
 
 
