@@ -4,3 +4,4 @@ export class WallTile extends Tile {
   icon : Text;
 }
   
+//fuck dom

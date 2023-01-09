@@ -4,3 +4,4 @@ export class PathTile extends Tile {
   icon : Text;
 }
   
+//fuck dom

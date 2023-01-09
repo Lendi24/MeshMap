@@ -1,6 +1,7 @@
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
 import {canvasSetPixel, canvasSetPixelColor} from '../app//p5'
+import {Carve} from '../app/PathFindingAlgorithms/AStarPathfinding'
 
 let pageToolIndex = 0;
 
@@ -58,6 +59,58 @@ let pageTools = [
             canvasSetPixelColor(x,y,"rgb(255,0,0)")
         }
     },
+
+    {
+        data : {
+            title:  "Create Room",
+            icon:   icons.mdiShapePolygonPlus  ,    
+        },
+
+        conf : {
+            testslid : {
+                type : "slider",
+                value : 10,
+                floor : 1,
+                roof  : 20,
+            },
+
+            testbox : {
+                type : "box",
+                value : 1,
+            },
+        },
+
+        logic : (x:number,y:number)=>{
+            Carve(x,y,x,y,"world")
+        }
+    },
+
+    {
+        data : {
+            title:  "Create Path",
+            icon:   icons.mdiVectorLine  ,    
+        },
+
+        conf : {
+            testslid : {
+                type : "slider",
+                value : 10,
+                floor : 1,
+                roof  : 20,
+            },
+
+            testbox : {
+                type : "box",
+                value : 1,
+            },
+        },
+
+        logic : (x:number,y:number)=>{
+            console.log("Send help")
+        }
+    },
+
+
 
     /*
     {
