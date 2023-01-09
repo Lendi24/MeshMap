@@ -8,6 +8,11 @@ let pageToolIndex = 0;
 export function getTool() {return pageTools[pageToolIndex]};
 export function setTool(index:number) {pageToolIndex = index;};
 
+let storage = {
+    x : -1,
+    y : -1,
+}
+
 let pageTools = [
     {
         data : {
@@ -30,7 +35,7 @@ let pageTools = [
             },
         },
 
-        logic : (x:number,y:number)=>{
+        logic : (x:number,y:number,e:MouseEvent)=>{
             console.log("select");
         }
     },
@@ -55,8 +60,8 @@ let pageTools = [
             },
         },
 
-        logic : (x:number,y:number)=>{
-            canvasSetPixelColor(x,y,"rgb(255,0,0)")
+        logic : (x:number,y:number,e:MouseEvent)=>{
+            if (e.target && e.buttons) canvasSetPixelColor(x,y,"rgb(255,0,0)")
         }
     },
 
@@ -80,8 +85,17 @@ let pageTools = [
             },
         },
 
-        logic : (x:number,y:number)=>{
-            Carve(x,y,x,y,"world")
+        logic : (x:number,y:number,e:MouseEvent)=>{
+            if (e.target && e.buttons) {
+                if (storage.x<0||storage.y<0) {
+                    Carve(x,y,storage.x,storage.y,"world")
+                    storage.x=-1
+                    storage.y=-1
+                } else {
+                    storage.x=x
+                    storage.y=y
+                }
+            }
         }
     },
 

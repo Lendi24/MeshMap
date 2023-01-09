@@ -1,4 +1,5 @@
 import { RoomTile } from "../tiles/TileRoom";
+import {board} from '../p5'
 
 export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   
@@ -149,8 +150,8 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
   let bestPath = [];
   let closedSet =[];
 
-  let start:any = world.grid[x1][y1];
-  let end:any = world.grid[x2][y2];
+  let start:any = board.grid[x1][y1];
+  let end:any = board.grid[x2][y2];
 
 
 
@@ -158,11 +159,11 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
   openSet.push(start);
 
 
-  for (let j = 0; j < world.cols; j++) {
-    for (let i = 0; i < world.rows; i++) {
+  for (let j = 0; j < board.cols; j++) {
+    for (let i = 0; i < board.rows; i++) {
 
-      world.grid[j][i].visited = false;
-      world.grid[j][i].truePath = false;   
+      board.grid[j][i].visited = false;
+      board.grid[j][i].truePath = false;   
     }
 
  }

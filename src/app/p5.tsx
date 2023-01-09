@@ -17,7 +17,7 @@ let gp5 : any;
 let w : number;
 let columns : any;
 let rows : any;
-let board : any;
+export let board : any;
 let locked = true;
 
 export function canvasSetPixel(x:number, y:number, pixel:Tile) {
@@ -66,18 +66,34 @@ export default function sketch(p5: P5CanvasInstance) {
     canvas.elt.onmouseout  = () => {locked = true;}
 
     canvas.elt.onmousemove = (e:MouseEvent) => {
-      if (e.target && e.buttons == 1 && !locked) {
+      if (!locked) {
         let target = e.target as HTMLElement;
         let x = Math.floor((e.x - target.offsetLeft) / w);
         let y = Math.floor((e.y - target.offsetTop ) / w);
         
-        getTool().logic.call("oi",x,y);
+        getTool().logic.call("oi",x,y,e);
         
         //canvasSetPixel(x,y,new Tile());
 
         //obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa, Va fan menade jag -Enok
       }
     }
+
+    canvas.elt.onmousedown = (e:MouseEvent) => {
+      if (!locked) {
+        let target = e.target as HTMLElement;
+        let x = Math.floor((e.x - target.offsetLeft) / w);
+        let y = Math.floor((e.y - target.offsetTop ) / w);
+        
+        getTool().logic.call("oi",x,y,e);
+        
+        //canvasSetPixel(x,y,new Tile());
+
+        //obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa, Va fan menade jag -Enok
+      }
+    }
+
+
 
     
     // generateCircular(20,20,10,board,4)

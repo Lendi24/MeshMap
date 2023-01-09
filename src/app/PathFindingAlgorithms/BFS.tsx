@@ -1,6 +1,5 @@
 import { canvasUpdate } from '../p5'; 
 
-
 export function PathFindingBFS(x1:number, y1:number,x2:number, y2:number, world:any) {
     for (let j = 0; j < world.cols; j++) {
         for (let i = 0; i < world.rows; i++) {
