@@ -1,9 +1,11 @@
 import React from "react";
 
 import tools from "../data/tools";
+import {setTool} from "../data/tools";
 
 import ToolSelect   from './SideBar/ToolSelect';
 import ConfigSelect from './SideBar/ConfigSelect';
+import { parse } from "node:path/win32";
 
 interface SidebarTool {
     data : any
@@ -32,6 +34,9 @@ class SideBar extends React.Component {
         //Updates internal state for storing current tool id and adding highlighting for correct tool
         if (e.target) this.setState({selectedToolId: (e.target as HTMLSpanElement).id.replace(`${this.toolIdPrefix}`,'')});
         if (e.target) (e.target as HTMLSpanElement).style.color = "red";
+
+        //Updates tools.ts script with correct index
+        setTool( parseInt((e.target as HTMLSpanElement).id.replace(`${this.toolIdPrefix}`,'')) );
     }
     
     render() {

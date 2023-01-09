@@ -244,7 +244,7 @@ export function generateMaze(x1:any,y1:any, world:any) {
          
           } 
   
-            console.log(queue)
+            //console.log(queue)
   
          
        }

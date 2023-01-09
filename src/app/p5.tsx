@@ -24,11 +24,11 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
   
   board.grid[x][y] = pixel; 
   board.grid[x][y].rgbText = "rgb(0,0,0)";
-  console.log( board.grid[x][y])
+  //console.log( board.grid[x][y])
   board.generateExits();//Hittade inget bättre sätt att uppdatera pixlarna än att köra en ny generateExits För allt. Däremot måste det ändras beroende på vad vil vill generera
 
   canvasUpdate(); 
-  console.log("put pixel") 
+  //console.log("put pixel") 
 }
 
 export function canvasGetPixel(x:number, y:number) { return board[x][y]; } 
@@ -69,7 +69,7 @@ export default function sketch(p5: P5CanvasInstance) {
 
     board.generateExits()
     
-    console.log(board.grid)
+    //console.log(board.grid)
     canvasUpdate();
   }
 }

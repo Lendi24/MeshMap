@@ -73,7 +73,7 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
     }
 
     let current:any = openSet[winner];
-    console.log(current)
+    //console.log(current)
     if (openSet[winner] == end) {
       
       if (current == end ) 
@@ -90,7 +90,7 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
 
       bestPath.push(start);
       bestPath.reverse();
-      console.log(bestPath)
+     // console.log(bestPath)
 
       return bestPath;
       }
@@ -121,7 +121,7 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
       exit.h = heuristic(exit)
       exit.f = exit.g + exit.h;
       exit.parent = current;
-      console.log(exit)
+      //console.log(exit)
 
       }
 
@@ -130,7 +130,7 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
 
 
     if (openSet.length === 0) {
-      return console.log("no solution")
+      //return console.log("no solution")
     }
 
 
@@ -234,7 +234,7 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
 
       bestPath.push(start);
       bestPath.reverse();
-      console.log(bestPath)
+      //console.log(bestPath)
 
       return bestPath;
       }
@@ -273,7 +273,7 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
 
 
     if (openSet.length === 0) {
-      return console.log("no solution")
+      //return console.log("no solution")
     }
 
 

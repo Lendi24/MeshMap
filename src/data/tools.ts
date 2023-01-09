@@ -1,6 +1,12 @@
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
 
+
+let pageToolIndex = 0;
+
+export function getTool() {return pageTools[pageToolIndex]};
+export function setTool(index:number) {pageToolIndex = index;};
+
 let pageTools = [
     {
         data : {
@@ -22,6 +28,10 @@ let pageTools = [
                 value : 0,
             },
         },
+
+        logic : ()=>{
+            
+        }
     },
 
     {
@@ -43,8 +53,13 @@ let pageTools = [
                 value : 1,
             },
         },
+
+        logic : ()=>{
+            
+        }
     },
 
+    /*
     {
         data : {
             title:  "userCreatePage",

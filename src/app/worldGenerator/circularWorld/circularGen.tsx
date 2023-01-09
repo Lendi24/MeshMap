@@ -64,7 +64,7 @@ export function generateCircular(Xc:any, Yc:any, r:any, world:any,rooms:any)
              yRoom = Math.floor(Yc + r * Math.cos(roomPlacment * y+ Offset));
         }
 
-        console.log( "coordx: "+ xRoom + " coordy: " + yRoom)
+        //console.log( "coordx: "+ xRoom + " coordy: " + yRoom)
         world.generateRoom(xRoom,yRoom,4,4)
         
 

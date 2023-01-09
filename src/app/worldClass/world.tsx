@@ -38,11 +38,11 @@ export class World {
         let validRange = true;
 
         if (cornerX < 0) {
-          console.log("outOfBounds for room in X")
+         // console.log("outOfBounds for room in X")
           validRange = false;
         }
         if (cornerY< 0) {
-          console.log("outOfBounds for room in Y")
+         // console.log("outOfBounds for room in Y")
           validRange = false;
         }
 
@@ -54,7 +54,7 @@ export class World {
     
             for (let i = cornerY-1; i < height+cornerY+1; i++) {//Idk how or why but if you take the three first condittions and add them to to the third if statment from here. You get cool dungeon
                  if (typeof this.grid[j] == 'undefined'||  typeof this.grid[j][i]== 'undefined' ||  typeof this.grid[j][i-1]== 'undefined' ||this.grid[j][i] instanceof RoomTile ) {
-                  console.log("HELLO")
+           //       console.log("HELLO")
                   placeRoom = false;
                   return;
                  }
