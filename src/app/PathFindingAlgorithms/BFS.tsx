@@ -52,7 +52,7 @@ export function PathFindingBFS(x1:number, y1:number,x2:number, y2:number, world:
         }
 
         current!.exits.forEach((element:any)=>{
-            if (!element.visited && !element.wall && element.walkable) {
+            if (!element.visited && element.walkable) {
                 element.visited = true;
                 element.parent = current!;
                 queue.push(element);

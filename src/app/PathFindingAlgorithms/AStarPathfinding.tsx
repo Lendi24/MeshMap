@@ -11,10 +11,10 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   let start:any = world.grid[x1][y1];
   let end:any = world.grid[x2][y2];
 
-  start.wall = false
+  start.walkable = true;
   start.rgbText = "rgb(0,255,0)"
   end.rgbText = "rgb(255,0,0)"
-  end.wall = false
+  end.walkable = true;
 
 
 
@@ -104,7 +104,7 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
     for (let i = 0; i < exits.length; i++) {
       let exit = exits[i];
 
-      if (!closedSet.includes(exit) && !exit.wall ) {
+      if (!closedSet.includes(exit) && exit.walkable ) {
 
         let tempG = current.g + 1;
 
@@ -248,7 +248,7 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
     for (let i = 0; i < exits.length; i++) {
       let exit = exits[i];
 
-      if (!closedSet.includes(exit) && !exit.wall) {
+      if (!closedSet.includes(exit)) {
 
         let tempG = current.g + 1;
 
