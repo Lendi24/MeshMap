@@ -54,7 +54,7 @@ function ConfigSelect(props:ConfigSelectState) {
     return (
         <div 
             className="flex flex-col bg-gray-500 z-20 text-white    m-1 p-1 rounded-md border">
-            {`Tool: '${props.toolTitle}'`}
+            {props.toolTitle}
             {selectors}
             {/*React.createElement("div", { className: "contexCon" },selectors)*/}
         </div>

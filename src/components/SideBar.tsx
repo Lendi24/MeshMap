@@ -49,7 +49,11 @@ class SideBar extends React.Component {
                 />
                 <ConfigSelect   
                     selectors={(tools[ (this.state as SideBarState).selectedToolId ] as SidebarTool).conf}
-                    toolTitle={(tools[ (this.state as SideBarState).selectedToolId ].data.title)}
+                    toolTitle={`Tool: '${(tools[ (this.state as SideBarState).selectedToolId ].data.title)}'`}
+                />
+                <ConfigSelect   
+                    selectors={(tools[ (this.state as SideBarState).selectedToolId ] as SidebarTool).conf}
+                    toolTitle={`Selected tile`}
                 />
             </div>
         );

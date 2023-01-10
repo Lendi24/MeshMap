@@ -9,4 +9,4 @@ export class RoomTile extends Tile {
    this.roomId =roomId;
   }
 }
-  
+  //is group
