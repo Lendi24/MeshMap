@@ -1,6 +1,6 @@
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
-import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel} from '../app//p5'
+import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel, generateRoom} from '../app//p5'
 import {Carve} from '../app/PathFindingAlgorithms/AStarPathfinding'
 
 let pageToolIndex = 0;
@@ -87,14 +87,14 @@ let pageTools = [
         },
 
         logic : (x:number,y:number,e:MouseEvent)=>{
-            if (e.target && e.buttons) canvasErasePixel(x,y)    }
+            if (e.target && e.buttons) canvasErasePixel(x,y)   }
     },
 
 
     {
         data : {
-            title:  "Create Room",
-            icon:   icons.mdiShapePolygonPlus  ,    
+            title:  "Create Path",
+            icon:   icons.mdiVectorLine  ,    
         },
 
         conf : {
@@ -127,26 +127,35 @@ let pageTools = [
 
     {
         data : {
-            title:  "Create Path",
-            icon:   icons.mdiVectorLine  ,    
+            title:  "Create Room",
+            icon:   icons.mdiShapePolygonPlus  ,    
         },
 
         conf : {
-            testslid : {
+            height : {
                 type : "slider",
                 value : 10,
                 floor : 1,
                 roof  : 20,
             },
 
-            testbox : {
-                type : "box",
-                value : 1,
+            length : {
+                type : "slider",
+                value : 10,
+                floor : 1,
+                roof  : 20,
             },
         },
 
-        logic : (x:number,y:number)=>{
-            console.log("Send help")
+        logic : (x:number,y:number,e:MouseEvent)=>{
+            if (e.target && e.buttons) {
+                let roomLength = (getTool() as any).conf.length.value;
+                let roomHeight = (getTool() as any).conf.height.value;
+                console.log(roomHeight)
+                console.log(roomLength)
+                
+                generateRoom(x,y,parseInt(roomLength),parseInt(roomHeight))
+            }
         }
     },
     

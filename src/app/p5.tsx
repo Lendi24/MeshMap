@@ -32,6 +32,61 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
   //console.log("put pixel") 
 }
 
+
+export function generateRoom(x1:any,y1:any,length:any,height:any){
+  board.rooms++;
+  let placeRoom:any = true;
+  const roomNode = new RoomTile(board.rooms)
+  roomNode.walkable = true;
+  let cornerX =  Math.round(x1-(length/2));
+  let cornerY = Math.round(y1-(height/2));
+  let validRange = true;
+
+  if (cornerX < 0) {
+   // console.log("outOfBounds for room in X")
+    validRange = false;
+  }
+
+  if (cornerY< 0) {
+   // console.log("outOfBounds for room in Y")
+    validRange = false;
+  }
+
+if (validRange) {
+
+    for (let j = cornerX-1; j < length+cornerX +1 ; j++) {
+      for (let i = cornerY-1; i < height+cornerY+1; i++) {//Idk how or why but if you take the three first condittions and add them to to the third if statment from here. You get cool dungeon
+        if (board.grid[j][i] instanceof RoomTile ) {
+          console.log("HOLA")
+
+            placeRoom = false;
+
+            return;
+           }
+       }
+     }
+  
+  if(placeRoom){
+
+    for (let j = cornerX; j < length+cornerX; j++) {    
+      for (let i = cornerY; i < height+cornerY; i++) {
+ 
+        if (j>0 && j<board.cols && i>0 && i<board.rows) {
+          board.grid[j][i] = roomNode;
+          board.grid[j][i].rgbText = "rgb(100,100,100)"
+        }
+     }
+   }
+  } 
+}
+canvasUpdate();
+
+board.generateExits();
+console.log(length+cornerX)
+
+}
+
+
 export function canvasSetPixelColor(x:number, y:number, rgb:string) {
   
   //board.grid[x][y] = pixel; 
