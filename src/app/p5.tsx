@@ -12,6 +12,7 @@ import {dungeonGen} from './worldGenerator/dungeonWorld/dungeonGen'
 import { backtrackingMaze } from './worldGenerator/mazeGenerator/mazeGen2';
 
 import {getTool} from '../data/tools'
+import { RoomTile } from "./tiles/TileRoom";
 
 let gp5 : any;
 let w : number;
@@ -40,6 +41,29 @@ export function canvasSetPixelColor(x:number, y:number, rgb:string) {
 
   canvasUpdate(); 
   //console.log("put pixel") 
+}
+
+export function canvasErasePixel(x:number,y:number){
+
+  if (board.grid[x][y] instanceof RoomTile) {
+    let room = board.grid[x][y];
+
+    for ( let i = 0; i < columns;i++) {
+      for ( let j = 0; j < rows;j++) {     
+      if (board.grid[i][j] == room) {
+        board.grid[i][j] = new Tile()
+      }
+      }
+    } 
+  }
+  else{
+    board.grid[x][y].rgbText = "rgb(255,255,255)";
+    board.grid[x][y].walkable = false;
+  }
+
+  board.generateExits()
+  canvasUpdate()
+
 }
 
 

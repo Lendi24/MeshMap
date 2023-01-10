@@ -1,6 +1,6 @@
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
-import {canvasSetPixel, canvasSetPixelColor} from '../app//p5'
+import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel} from '../app//p5'
 import {Carve} from '../app/PathFindingAlgorithms/AStarPathfinding'
 
 let pageToolIndex = 0;
@@ -40,6 +40,7 @@ let pageTools = [
         }
     },
 
+   
     {
         data : {
             title:  "Draw",
@@ -64,6 +65,31 @@ let pageTools = [
             if (e.target && e.buttons) canvasSetPixelColor(x,y,"rgb(255,0,0)")
         }
     },
+    {
+        data : {
+            title:  "Erase",
+            icon:   icons.mdiEraser,    
+        },
+
+        conf : {
+            SelectProp : {
+                icon:   icons.mdiEraser,    
+                type : "slider",
+                value : 10,
+                floor : 1,
+                roof  : 20,
+            },
+
+            testböx : {
+                type : "box",
+                value : 0,
+            },
+        },
+
+        logic : (x:number,y:number,e:MouseEvent)=>{
+            if (e.target && e.buttons) canvasErasePixel(x,y)    }
+    },
+
 
     {
         data : {
@@ -123,6 +149,7 @@ let pageTools = [
             console.log("Send help")
         }
     },
+    
 
 
 

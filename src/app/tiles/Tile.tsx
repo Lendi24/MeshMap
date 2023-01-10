@@ -1,9 +1,7 @@
 export class Tile {
 
   rgbText: string = "rgb(255,255,255)";
-  wall : boolean = false;
   walkable : boolean = false;
-  path : boolean = false;
   //terrainType: any;
 
   parent : any;
