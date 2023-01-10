@@ -3,6 +3,7 @@ import {ConfigSelectorSlider, ConfigSelectorBox} from './ConfigSelect/Selector';
 
 interface ConfigSelectState {
     selectors:any;
+    toolTitle:string;
 }
 
 function ConfigSelect(props:ConfigSelectState) {
@@ -52,9 +53,10 @@ function ConfigSelect(props:ConfigSelectState) {
 
     return (
         <div 
-            className="flex flex-row flex-wrap bg-gray-600 z-20">
-            {/*selectors*/}
-            {React.createElement("div", { className: "contexCon" },selectors)}
+            className="flex flex-col bg-gray-500 z-20 text-white    m-1 p-1 rounded-md border">
+            {`Tool: '${props.toolTitle}'`}
+            {selectors}
+            {/*React.createElement("div", { className: "contexCon" },selectors)*/}
         </div>
     );
 }

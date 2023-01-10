@@ -22,7 +22,7 @@ function ToolSelect(props:ToolSelectState) {
         
     return (
         <div 
-            className="flex flex-row flex-wrap bg-gray-600 z-20">
+            className="flex flex-row flex-wrap bg-gray-600 z-20   m-1 p-1 rounded-md border">
             {tools}
         </div>
     );
