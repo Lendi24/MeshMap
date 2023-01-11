@@ -1,3 +1,4 @@
+import React, { Component, createContext } from 'react';
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
 import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel} from '../app//p5'
@@ -9,6 +10,8 @@ let pageToolIndex = 0;
 export function getTool() {return pageTools[pageToolIndex]};
 export function setTool(index:number) {pageToolIndex = index;};
 
+export const DataSelectedTileContext = React.createContext( {x:-1, y:-1} );
+  
 let storage = {
     x : -1,
     y : -1,
@@ -38,10 +41,8 @@ let pageTools = [
 
         logic : (x:number,y:number,e:MouseEvent)=>{
             console.log("select");
-            //setSelectedTile(`${x};${y}`)
         }
     },
-
    
     {
         data : {
@@ -67,6 +68,7 @@ let pageTools = [
             if (e.target && e.buttons) canvasSetPixelColor(x,y,"rgb(255,0,0)")
         }
     },
+
     {
         data : {
             title:  "Erase",
@@ -91,7 +93,6 @@ let pageTools = [
         logic : (x:number,y:number,e:MouseEvent)=>{
             if (e.target && e.buttons) canvasErasePixel(x,y)    }
     },
-
 
     {
         data : {
@@ -151,116 +152,6 @@ let pageTools = [
             console.log("Send help")
         }
     },
-    
-
-
-
-    /*
-    {
-        data : {
-            title:  "userCreatePage",
-            icon:   icons.mdiAccountPlus ,    
-        },
-
-        conf : {
-            testslid : {
-                type : "slider",
-                value : 10,
-                floor : 1,
-                roof  : 20,
-            },
-
-            testbox : {
-                type : "box",
-                value : 1,
-            },
-        },
-    },
-
-    {
-        data : {
-            title:  "userLoginPage",
-            icon:   icons.mdiAccountKey  ,
-        },
-
-        conf : {
-            testslid : {
-                type : "slider",
-                value : 10,
-                floor : 1,
-                roof  : 20,
-            },
-
-            testbox : {
-                type : "box",
-                value : 1,
-            },
-        },
-
-    },
-
-    {
-        data : {
-            title:  "Create",
-            icon:   icons.mdiContentSave ,    
-        },
-
-        conf : {
-            testslid : {
-                type : "slider",
-                value : 10,
-                floor : 1,
-                roof  : 20,
-            },
-
-            testbox : {
-                type : "box",
-                value : 1,
-            },
-        },
-    },
-
-    {
-        data : {
-            title: "Create",
-            icon: icons.mdiShapeCirclePlus,    
-        },
-
-        conf : {
-            testslid : {
-                type : "slider",
-                value : 10,
-                floor : 1,
-                roof  : 20,
-            },
-
-            testbox : {
-                type : "box",
-                value : 1,
-            },
-        },
-    },
-
-
-/*
-    { 
-        title: "Connect (C)",
-        icon: icons.mdiVectorLine,
-    },*/
 ];
-/*
-let tools = {
-    'S' : {
-        title: "Select",
-        icon: icons.mdiCursorDefault,
-    },
-
-    'D' : {
-        title: "Draw",
-        icon: icons.mdiShapeCirclePlus,
-    },
-};*/
-
-// = tools[0];
 
 export default pageTools;

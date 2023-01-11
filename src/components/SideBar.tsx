@@ -8,6 +8,7 @@ import ConfigSelect from './SideBar/ConfigSelect';
 
 import {canvasGetPixel} from '../app/p5';
 //export function setSelectedTile(str:string) {selectedTile = str; };
+//import {context} from './';
 
 interface SidebarTool {
     data : any
@@ -18,7 +19,7 @@ interface SideBarState {
     selectedToolId : any;
 }
 interface SideBarProps {
-    selectedTile : any;
+    selectedTile : {x:number, y:number};
 }
 class SideBar extends React.Component<SideBarProps, SideBarState> { 
     toolIdPrefix = "toolId-";
@@ -33,7 +34,7 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
         };
     }
 
-    /*
+    
     handleUserSelectTile(x:number,y:number){
         return (
             <ConfigSelect   
@@ -41,7 +42,7 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
                 toolTitle={`Selected tile`}
             />
         )
-    }*/
+    }
     
     handleChange(e:MouseEvent) {
         //Gets old tool and removes highlighting
@@ -68,7 +69,7 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
                     selectors={(tools[ (this.state as SideBarState).selectedToolId ] as SidebarTool).conf}
                     toolTitle={`Tool: '${(tools[ (this.state as SideBarState).selectedToolId ].data.title)}'`}
                 />
-                {/*this.props.selectedTile*/}
+                x : {this.props.selectedTile.x} ± y : {this.props.selectedTile.y}
             </div>
         );
     }    
