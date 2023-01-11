@@ -86,6 +86,19 @@ console.log(length+cornerX)
 
 }
 
+export function canvaseClean(){
+  board.currentRooms = []
+  for ( let i = 0; i < columns;i++) {
+    for ( let j = 0; j < rows;j++) {  
+      board.grid[i][j] = new Tile;;
+
+      board.grid[i][j].rgbText = "rgb(255,255,255)";
+      board.generateExits();
+  
+    }
+  } 
+
+}
 
 export function canvasSetPixelColor(x:number, y:number, rgb:string) {
   
@@ -96,6 +109,12 @@ export function canvasSetPixelColor(x:number, y:number, rgb:string) {
 
   canvasUpdate(); 
   //console.log("put pixel") 
+}
+
+export function returnBoard(){
+
+return board;
+
 }
 
 export function canvasErasePixel(x:number,y:number){
@@ -175,8 +194,8 @@ export default function sketch(p5: P5CanvasInstance) {
 
 
     
-    // generateCircular(20,20,10,board,4)
-    dungeonGen(10,3,10,3,20,board)
+    generateCircular(24,23,20,board,10)
+    // dungeonGen(10,3,10,3,20,board)
 
 
     board.generateExits()

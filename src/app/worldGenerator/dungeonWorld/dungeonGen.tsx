@@ -45,12 +45,13 @@ for (let i = 0; i < world.currentRooms.length-1; i++) {
 let firstRoom:any = find2DArray(world.currentRooms[i])
 let secondRoom:any = find2DArray(world.currentRooms[i+1])
 
+
   Carve(firstRoom[0],firstRoom[1],secondRoom[0],secondRoom[1],world)
 
 
-
-  
 }
+
+
  let firstRoom:any = find2DArray(world.currentRooms[0])
  let secondRoom:any = find2DArray(world.currentRooms[4])
  AstarPath(firstRoom[0],firstRoom[1],secondRoom[0],secondRoom[1],world)

@@ -1,7 +1,10 @@
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
-import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel, generateRoom} from '../app//p5'
+import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel, generateRoom,canvaseClean,returnBoard} from '../app//p5'
 import {Carve} from '../app/PathFindingAlgorithms/AStarPathfinding'
+import {dungeonGen} from '../app/worldGenerator/dungeonWorld/dungeonGen'
+import {generateCircular} from '../app/worldGenerator/circularWorld/circularGen'
+
 
 let pageToolIndex = 0;
 
@@ -158,6 +161,117 @@ let pageTools = [
             }
         }
     },
+
+    {
+        data : {
+            title:  "Erase Map",
+            icon:   icons.mdiDelete   ,    
+        },
+
+        conf : {
+           
+        },
+
+        logic : (x:number,y:number,e:MouseEvent)=>{
+            if (e.target && e.buttons) {
+                canvaseClean();
+            }
+        }
+    },
+
+    {
+        data : {
+            title:  "Generate dungeon",
+            icon:   icons.mdiApps    ,    
+        },
+
+        conf : {
+            maxRooms : {
+                type : "slider",
+                value : 20,
+                floor : 1,
+                roof  : 40,
+            },
+
+            maxRoomLength : {
+                type : "slider",
+                value : 10,
+                floor : 1,
+                roof  : 20,
+            },
+            
+            minRoomLength : {
+                type : "slider",
+                value : 3,
+                floor : 1,
+                roof  : 20,
+            },
+            maxRoomHeight : {
+                type : "slider",
+                value : 10,
+                floor : 1,
+                roof  : 20,
+            },
+            minRoomHeight : {
+                type : "slider",
+                value : 3,
+                floor : 1,
+                roof  : 20,
+            },
+        },
+
+        logic : (x:number,y:number,e:MouseEvent)=>{
+            if (e.target && e.buttons) {
+
+                let maxRoomLength = (getTool() as any).conf.maxRoomLength.value;
+                let minRoomLength = (getTool() as any).conf.minRoomLength.value;
+                let maxRoomHeight = (getTool() as any).conf.maxRoomHeight.value;
+                let minRoomHeight = (getTool() as any).conf.maxRoomLength.value;
+                let maxRooms =  (getTool() as any).conf.maxRooms.value;
+                
+                canvaseClean();
+                dungeonGen(parseInt(maxRoomLength),parseInt(minRoomLength),parseInt(maxRoomHeight),parseInt(minRoomHeight),parseInt(maxRooms),returnBoard())
+            
+
+               
+            }
+        }
+    },
+
+    {
+        data : {
+            title:  "Generate circular world",
+            icon:   icons.mdiAutorenew    ,    
+        },
+
+        conf : {
+            radius : {
+                type : "slider",
+                value : 10,
+                floor : 1,
+                roof  : 20,
+            },
+
+            rooms : {
+                type : "slider",
+                value : 4,
+                floor : 1,
+                roof  : 20,
+            },
+        },
+
+        logic : (x:number,y:number,e:MouseEvent)=>{
+            if (e.target && e.buttons) {
+
+                let radius = (getTool() as any).conf.radius.value;
+                let Rooms = (getTool() as any).conf.rooms.value;
+                canvaseClean()
+                generateCircular(x,y,parseInt(radius),returnBoard(),parseInt(Rooms))
+            }
+        }
+    },
+
+    
     
 
 
