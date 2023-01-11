@@ -2,6 +2,7 @@ import * as icons from '@mdi/js' ;
 import '@mdi/js';
 import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel} from '../app//p5'
 import {Carve} from '../app/PathFindingAlgorithms/AStarPathfinding'
+//import {setSelectedTile} from '../components/SideBar'
 
 let pageToolIndex = 0;
 
@@ -37,6 +38,7 @@ let pageTools = [
 
         logic : (x:number,y:number,e:MouseEvent)=>{
             console.log("select");
+            //setSelectedTile(`${x};${y}`)
         }
     },
 
