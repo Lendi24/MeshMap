@@ -25,7 +25,7 @@ export function generateCircular(Xc:any, Yc:any, r:any, world:any,rooms:any)
             y0 += yStep;
         }
 
-        world.grid[x0][y0].rgbText="rgb(0,0,255)";
+        world.grid[x0][y0].rgbText="rgb(64,51, 53)";
         world.grid[x0][y0].walkable = true;
 
     }
