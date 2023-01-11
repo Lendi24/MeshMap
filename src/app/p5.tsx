@@ -189,7 +189,8 @@ export default function sketch(p5: P5CanvasInstance) {
 export function canvasUpdate() {
   gp5.background(255);
   for ( let i = 0; i < columns;i++) {
-    for ( let j = 0; j < rows;j++) {     
+    for ( let j = 0; j < rows;j++) {   
+
       let color = board.grid[i][j].color()
       gp5.fill(color.rgbText)
       gp5.stroke(0);

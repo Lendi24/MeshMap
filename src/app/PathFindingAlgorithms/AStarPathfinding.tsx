@@ -1,5 +1,6 @@
 import { RoomTile } from "../tiles/TileRoom";
 import {board} from '../p5'
+import animate from './pathFindingAnime'
 
 export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   
@@ -12,8 +13,7 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   let end:any = world.grid[x2][y2];
 
   start.walkable = true;
-  start.rgbText = "rgb(0,255,0)"
-  end.rgbText = "rgb(255,0,0)"
+ 
   end.walkable = true;
 
 
@@ -81,7 +81,6 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
       { 
       do{
         
-        current.rgbText="rgb(170, 255, 0)";
         bestPath.push(current)
           
           current=current.parent;
@@ -91,8 +90,9 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
 
       bestPath.push(start);
       bestPath.reverse();
-     // console.log(bestPath)
-
+      //console.log(bestPath)
+          animate(world,bestPath)
+          
       return bestPath;
       }
   }
