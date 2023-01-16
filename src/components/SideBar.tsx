@@ -6,7 +6,8 @@ import {setTool} from "../data/tools";
 import ToolSelect   from './SideBar/ToolSelect';
 import ConfigSelect from './SideBar/ConfigSelect';
 
-import {canvasGetPixel} from '../app/p5';
+import {canvasGetPixel} from '../views/Editor/p5Canvas';
+
 //export function setSelectedTile(str:string) {selectedTile = str; };
 //import {context} from './';
 

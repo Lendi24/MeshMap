@@ -4,7 +4,8 @@ import p5Types   from "p5";
 
 import { Tile  }    from '../../app/tiles/Tile'; 
 import { World }    from '../../app/worldClass/world'; 
-import {getTool}    from '../../data/tools'
+import { getTool }  from '../../data/tools'
+import { RoomTile } from "../../app/tiles/TileRoom";
 import {dungeonGen} from '../../app/worldGenerator/dungeonWorld/dungeonGen'
 
 interface ComponentProps {
@@ -14,7 +15,7 @@ interface ComponentProps {
 let x = 50;
 const y = 50;
 
-let gp5 : any;
+//let gp5 : any;
 let w : number;
 let columns : any;
 let rows : any;
@@ -22,6 +23,59 @@ export let board : any;
 let locked = true;
 
 
+
+export function canvasSetPixel(x:number, y:number, pixel:Tile) {
+    board.grid[x][y] = pixel; 
+    board.grid[x][y].rgbText = "rgb(0,0,0)";
+    //console.log( board.grid[x][y])
+    board.generateExits();//Hittade inget bättre sätt att uppdatera pixlarna än att köra en ny generateExits För allt. Däremot måste det ändras beroende på vad vil vill generera
+  
+    //canvasUpdate(); 
+
+    //console.log("put pixel") 
+  }
+  
+  export function canvasSetPixelColor(x:number, y:number, rgb:string) {
+    
+    //board.grid[x][y] = pixel; 
+    board.grid[x][y].rgbText = rgb;
+    //console.log( board.grid[x][y])
+    board.generateExits();//Hittade inget bättre sätt att uppdatera pixlarna än att köra en ny generateExits För allt. Däremot måste det ändras beroende på vad vil vill generera
+  
+    //canvasUpdate(); 
+
+    //console.log("put pixel") 
+  }
+  
+  export function canvasErasePixel(x:number,y:number){
+  
+    if (board.grid[x][y] instanceof RoomTile) {
+      let room = board.grid[x][y];
+  
+      for ( let i = 0; i < columns;i++) {
+        for ( let j = 0; j < rows;j++) {     
+        if (board.grid[i][j] == room) {
+          board.grid[i][j] = new Tile()
+        }
+        }
+      } 
+    }
+    else{
+      board.grid[x][y].rgbText = "rgb(255,255,255)";
+      board.grid[x][y].walkable = false;
+    }
+  
+    board.generateExits()
+    //canvasUpdate()
+  
+  }
+  
+  export function canvasGetPixel(x:number, y:number) { return board[x][y]; } 
+  
+
+/*////////////////////////
+//Canvas component below//
+////////////////////////*/
 const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
 	//See annotations in JS for more information
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
@@ -64,6 +118,8 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
                 let target = e.target as HTMLElement;
                 let x = Math.floor((e.x - target.offsetLeft) / w);
                 let y = Math.floor((e.y - target.offsetTop ) / w);
+                
+                console.log(y);
               
                 getTool().logic.call("oi",x,y,e);
               
@@ -83,9 +139,7 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
 	};
 
 	const draw = (p5: p5Types) => {
-		p5.background(0);
-		p5.ellipse(x, y, 70, 70);
-		x++;
+        canvasUpdate(p5);
 	};
 
     /*//////////////////////

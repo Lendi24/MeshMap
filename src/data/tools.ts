@@ -1,7 +1,7 @@
 import React, { Component, createContext } from 'react';
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
-import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel} from '../app//p5'
+import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel} from '../views/Editor/p5Canvas'
 import {Carve} from '../app/PathFindingAlgorithms/AStarPathfinding'
 //import {setSelectedTile} from '../components/SideBar'
 

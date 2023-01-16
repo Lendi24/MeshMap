@@ -4,7 +4,7 @@ import { Outlet, Link } from "react-router-dom";
 import './Editor.css'
 import ComponentSideBar      from '../../components/SideBar';
 
-import sketch from '../../app/p5'
+//import sketch from '../../app/p5'
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
 import { DataSelectedTileContext } from "../../data/tools";
@@ -59,7 +59,7 @@ class Editor extends React.Component {
               </div>
           </div>
           <div id = "window-cont">
-              <div id = "window-model"></div>
+            <div id = "window-model"></div>
           </div>
       </div>
     );
