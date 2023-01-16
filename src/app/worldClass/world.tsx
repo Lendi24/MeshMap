@@ -2,7 +2,7 @@ import React from "react";
 import { P5CanvasInstance, ReactP5Wrapper } from "react-p5-wrapper";
 import { Tile } from '../tiles/Tile'; 
 import {RoomTile} from '../tiles/TileRoom'
-import { canvasUpdate } from '../p5'; 
+//import { canvasUpdate } from '../../views/Editor/p5Canvas'; 
 
 export class World {
     cols : number;

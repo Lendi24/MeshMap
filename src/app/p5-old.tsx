@@ -22,7 +22,6 @@ export let board : any;
 let locked = true;
 
 export function canvasSetPixel(x:number, y:number, pixel:Tile) {
-  
   board.grid[x][y] = pixel; 
   board.grid[x][y].rgbText = "rgb(0,0,0)";
   //console.log( board.grid[x][y])
@@ -140,7 +139,6 @@ export function canvasErasePixel(x:number,y:number){
 
 }
 
-
 export function canvasGetPixel(x:number, y:number) { return board[x][y]; } 
 
 export default function sketch(p5: P5CanvasInstance) {
@@ -191,15 +189,10 @@ export default function sketch(p5: P5CanvasInstance) {
       }
     }
 
-
-
-    
-    generateCircular(24,23,20,board,10)
-    // dungeonGen(10,3,10,3,20,board)
-
-
+    // generateCircular(20,20,10,board,4)
+    dungeonGen(10,3,10,3,20,board)
     board.generateExits()
-    
+  
     //console.log(board.grid)
     canvasUpdate();
   }
@@ -222,6 +215,8 @@ export function canvasUpdate() {
 class Utils {
   clamp = (num:number, min:number, max:number) => Math.min(Math.max(num, min), max);
 }
+
+
 
 /*
 

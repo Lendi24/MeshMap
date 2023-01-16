@@ -5,7 +5,11 @@ import {setTool} from "../data/tools";
 
 import ToolSelect   from './SideBar/ToolSelect';
 import ConfigSelect from './SideBar/ConfigSelect';
-import { parse } from "node:path/win32";
+
+import {canvasGetPixel} from '../views/Editor/p5Canvas';
+
+//export function setSelectedTile(str:string) {selectedTile = str; };
+//import {context} from './';
 
 interface SidebarTool {
     data : any
@@ -13,17 +17,32 @@ interface SidebarTool {
 }
 
 interface SideBarState {
-    selectedToolId : number;
+    selectedToolId : any;
 }
-  
-class SideBar extends React.Component { 
+interface SideBarProps {
+    selectedTile : {x:number, y:number};
+}
+class SideBar extends React.Component<SideBarProps, SideBarState> { 
     toolIdPrefix = "toolId-";
 
-    constructor(props : any) {
-        super(props);
+    constructor(props : SideBarProps) {
+        super(props);    
         this.handleChange   = this.handleChange.bind(this);
         this.render         = this.render.bind(this);
-        this.state = {selectedToolId: 0};
+        this.state = {
+            selectedToolId: 0,
+            //selectedTile  : {x:-1,y:-1},
+        };
+    }
+
+    
+    handleUserSelectTile(x:number,y:number){
+        return (
+            <ConfigSelect   
+                selectors={canvasGetPixel(1,1).getData()}
+                toolTitle={`Selected tile`}
+            />
+        )
     }
     
     handleChange(e:MouseEvent) {
@@ -51,13 +70,11 @@ class SideBar extends React.Component {
                     selectors={(tools[ (this.state as SideBarState).selectedToolId ] as SidebarTool).conf}
                     toolTitle={`Tool: '${(tools[ (this.state as SideBarState).selectedToolId ].data.title)}'`}
                 />
-                <ConfigSelect   
-                    selectors={(tools[ (this.state as SideBarState).selectedToolId ] as SidebarTool).conf}
-                    toolTitle={`Selected tile`}
-                />
+                x : {this.props.selectedTile.x} ± y : {this.props.selectedTile.y}
             </div>
         );
     }    
 }
 
+//const returnComp = React.FC<SideBarProps> = (props: SideBarProps) => { }
 export default SideBar;

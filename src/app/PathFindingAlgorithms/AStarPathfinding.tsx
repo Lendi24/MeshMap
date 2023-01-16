@@ -1,6 +1,5 @@
 import { RoomTile } from "../tiles/TileRoom";
-import {board} from '../p5'
-import animate from './pathFindingAnime'
+import {board} from '../../views/Editor/p5Canvas'
 
 export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   

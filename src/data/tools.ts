@@ -1,16 +1,17 @@
+import React, { Component, createContext } from 'react';
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
-import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel, generateRoom,canvaseClean,returnBoard} from '../app//p5'
+import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel} from '../views/Editor/p5Canvas'
 import {Carve} from '../app/PathFindingAlgorithms/AStarPathfinding'
-import {dungeonGen} from '../app/worldGenerator/dungeonWorld/dungeonGen'
-import {generateCircular} from '../app/worldGenerator/circularWorld/circularGen'
-
+//import {setSelectedTile} from '../components/SideBar'
 
 let pageToolIndex = 0;
 
 export function getTool() {return pageTools[pageToolIndex]};
 export function setTool(index:number) {pageToolIndex = index;};
 
+export const DataSelectedTileContext = React.createContext( {x:-1, y:-1} );
+  
 let storage = {
     x : -1,
     y : -1,
@@ -42,7 +43,6 @@ let pageTools = [
             console.log("select");
         }
     },
-
    
     {
         data : {
@@ -68,6 +68,7 @@ let pageTools = [
             if (e.target && e.buttons) canvasSetPixelColor(x,y,"rgb(255,0,0)")
         }
     },
+
     {
         data : {
             title:  "Erase",
@@ -92,7 +93,6 @@ let pageTools = [
         logic : (x:number,y:number,e:MouseEvent)=>{
             if (e.target && e.buttons) canvasErasePixel(x,y)   }
     },
-
 
     {
         data : {
@@ -369,19 +369,5 @@ let pageTools = [
         icon: icons.mdiVectorLine,
     },*/
 ];
-/*
-let tools = {
-    'S' : {
-        title: "Select",
-        icon: icons.mdiCursorDefault,
-    },
-
-    'D' : {
-        title: "Draw",
-        icon: icons.mdiShapeCirclePlus,
-    },
-};*/
-
-// = tools[0];
 
 export default pageTools;
