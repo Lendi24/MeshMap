@@ -22,8 +22,6 @@ let rows : any;
 export let board : any;
 let locked = true;
 
-
-
 export function canvasSetPixel(x:number, y:number, pixel:Tile) {
     board.grid[x][y] = pixel; 
     board.grid[x][y].rgbText = "rgb(0,0,0)";
@@ -50,15 +48,13 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
   export function canvasErasePixel(x:number,y:number){
   
     if (board.grid[x][y] instanceof RoomTile) {
-      let room = board.grid[x][y];
+        let room = board.grid[x][y];
   
-      for ( let i = 0; i < columns;i++) {
-        for ( let j = 0; j < rows;j++) {     
-        if (board.grid[i][j] == room) {
-          board.grid[i][j] = new Tile()
-        }
-        }
-      } 
+        for ( let i = 0; i < columns;i++) {
+            for ( let j = 0; j < rows;j++) {     
+                if (board.grid[i][j] == room) {board.grid[i][j] = new Tile()}
+            }
+        } 
     }
     else{
       board.grid[x][y].rgbText = "rgb(255,255,255)";
@@ -81,7 +77,7 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
 		//p5.createCanvas(500, 500).parent(canvasParentRef); <--- Old!
 
-        let canvas = p5.createCanvas(720, 720);
+        let canvas = p5.createCanvas(720, 720).parent("react-p5-canvas");
 
         w = 15;
         columns = Math.floor(p5.width / w);
@@ -159,7 +155,11 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
     }  
     
 
-	return <Sketch setup={setup} draw={draw} />;
+	return (
+        <div id="react-p5-canvas">
+            <Sketch setup={setup} draw={draw} />
+        </div>
+    );
 };
 
 export default p5Canvas;
