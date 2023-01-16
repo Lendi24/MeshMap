@@ -8,6 +8,8 @@ import sketch from '../../app/p5'
 import { ReactP5Wrapper } from "react-p5-wrapper";
 
 import { DataSelectedTileContext } from "../../data/tools";
+
+import P5Canvas from "./p5Canvas";
 /*
 export default function Editor() {
   return (
@@ -52,7 +54,8 @@ class Editor extends React.Component {
           <div className="flex flex-grow m-0 overflow-hidden bg-green-600 justify-between">
               <ComponentSideBar selectedTile={{x:context.x,y:context.y}}/>            
               <div className="w-full h-full m-0 flex justify-center items-center">
-                <ReactP5Wrapper sketch={sketch}/> 
+                <P5Canvas/>
+                {/*<ReactP5Wrapper sketch={sketch}>*/}
               </div>
           </div>
           <div id = "window-cont">
