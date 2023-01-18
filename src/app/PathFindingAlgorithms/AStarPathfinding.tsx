@@ -2,7 +2,10 @@ import { RoomTile } from "../tiles/TileRoom";
 import {board} from '../../views/Editor/p5Canvas'
 import animate from './pathFindingAnime'
 
-export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
+function randomIntFromInterval(min:any, max:any) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any,showPath:boolean){
   
    
   let openSet =[];
@@ -13,16 +16,20 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   let end:any = world.grid[x2][y2];
 
   start.walkable = true;
+ 
   end.walkable = true;
 
+
+
   openSet.push(start);
+
 
   for (let j = 0; j < world.cols; j++) {
     for (let i = 0; i < world.rows; i++) {
 
-      world.grid[j][i].visited = false;
-      world.grid[j][i].truePath = false;   
+      board.grid[j][i].g = 0;
     }
+
  }
 
     function removeFromArray(arr:any, elt:any) {
@@ -47,13 +54,13 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
 
   }
   
-  function heuristic(start:any){
+  function heuristic(start:any,end:any){
 
-    let currentCoords = find2DArray(start);
-    let totalX = Math.abs(currentCoords![0]-x2)
-    let totalY = Math.abs(currentCoords![1]-y2)
+    let currentCoordsStart = find2DArray(start);
+    let currentCoordsEnd = find2DArray(end);
 
-    let totalD = totalX + totalY
+  
+    let totalD= Math.abs(currentCoordsStart![0] - currentCoordsEnd![0]) + Math.abs(currentCoordsStart![1] - currentCoordsEnd![1]);
     return totalD;
   }
 
@@ -86,9 +93,12 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
       bestPath.push(start);
       bestPath.reverse();
       //console.log(bestPath)
-          animate(world,bestPath)
+      if (showPath==true) {
+        animate(world,bestPath)
+
+      }
           
-      return bestPath;
+      return true;
       }
   }
 
@@ -96,34 +106,30 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
     closedSet.push(current);   
      let exits:any = current.exits;
 
-    for (let i = 0; i < exits.length; i++) {
+     for (let i = 0; i < exits.length; i++) {
       let exit = exits[i];
 
-      if (!closedSet.includes(exit) && exit.walkable ) {
+      if (!closedSet.includes(exit) && exit.walkable) {
 
-        let tempG = current.g + 1;
-
-        if(openSet.includes(exit)){
-          if (tempG<exit.g) {
-            exit.g = tempG;
-          }
-
-        }  else{
-        exit.g = tempG;
-        openSet.push(exit)
+        let tempG = current.g + heuristic(exit,current);
+        if (!openSet.includes(exit)) {
+          openSet.push(exit);
+      } else if (tempG >= exit.g) {
+          // No, it's not a better path
+          continue;
       }
-
     
-      exit.h = heuristic(exit)
-      exit.f = exit.g + exit.h;
-      exit.parent = current;
-      //console.log(exit)
+     
+        exit.h = heuristic(exit,current)
+        exit.f = exit.g + exit.h;
+        exit.parent = current;
+      
+  
 
       }
 
       
     }
-
 
     if (openSet.length === 0) {
       //return console.log("no solution")
@@ -157,8 +163,8 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
   for (let j = 0; j < board.cols; j++) {
     for (let i = 0; i < board.rows; i++) {
 
-      board.grid[j][i].visited = false;
-      board.grid[j][i].truePath = false;   
+      board.grid[j][i].g = randomIntFromInterval(0,1)
+      
     }
 
  }
@@ -184,13 +190,13 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
 
 
   }
-  function heuristic(start:any){
+  function heuristic(start:any,end:any){
 
-    let currentCoords = find2DArray(start);
-    let totalX = Math.abs(currentCoords![0]-x2)
-    let totalY = Math.abs(currentCoords![1]-y2)
+    let currentCoordsStart = find2DArray(start);
+    let currentCoordsEnd = find2DArray(end);
 
-    let totalD = totalX + totalY
+  
+    let totalD= Math.abs(currentCoordsStart![0] - currentCoordsEnd![0]) + Math.abs(currentCoordsStart![1] - currentCoordsEnd![1]);
     return totalD;
   }
 
@@ -218,7 +224,7 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
         else{
 
           current.rgbText="rgb(64,51, 53)";
-
+     
         }
         current.walkable = true;
         bestPath.push(current)
@@ -243,24 +249,22 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
     for (let i = 0; i < exits.length; i++) {
       let exit = exits[i];
 
-      if (!closedSet.includes(exit)) {
+      if (!closedSet.includes(exit) ) {
 
-        let tempG = current.g + 1;
-
-        if(openSet.includes(exit)){
-          if (tempG<exit.g) {
-            exit.g = tempG;
-          }
-
-        }  else{
-        exit.g = tempG;
-        openSet.push(exit)
+        let tempG = current.g + heuristic(exit,current);
+        if (!openSet.includes(exit)) {
+          openSet.push(exit);
+      } else if (tempG >= exit.g) {
+          // No, it's not a better path
+          continue;
       }
-
     
-      exit.h = heuristic(exit)
-      exit.f = exit.g + exit.h;
-      exit.parent = current;
+     
+        exit.h = heuristic(exit,current)
+        exit.f = exit.g + exit.h;
+        exit.parent = current;
+      
+  
 
       }
 
@@ -278,3 +282,4 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
 
 
 }
+
