@@ -163,7 +163,7 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
   for (let j = 0; j < board.cols; j++) {
     for (let i = 0; i < board.rows; i++) {
 
-      board.grid[j][i].g = randomIntFromInterval(0,1)
+      board.grid[j][i].g = randomIntFromInterval(1,100)
       
     }
 

@@ -54,7 +54,7 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
   
   }
   
-  export function canvasGetPixel(x:number, y:number) { return board[x][y]; } 
+  export function canvasGetPixel(x:number, y:number) { return board.grid[x][y]; } 
   
 
 /*////////////////////////
@@ -87,7 +87,7 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
           let x = Math.floor((e.x - target.offsetLeft) / w);
           let y = Math.floor((e.y - target.offsetTop ) / w);
           getTool().logic.call("oi",x,y,e);   
-          props.moveCallback(x,y);
+          //props.moveCallback(x,y);
         } else {props.moveCallback(-1,-1)}
       }
 

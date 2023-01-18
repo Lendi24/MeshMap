@@ -20,6 +20,23 @@ export class Tile {
     return {rgbText: this.rgbText};
   }
 
+  data = {
+    gScore : {
+        type : "slider",
+        value : this.g,
+        floor : 1,
+        roof  : 100,
+    },
+
+    Walkable : {
+        type : "box",
+        value : this.walkable,
+    },
+  }
+
+
+  /*
+
   setData(key:string,data:any) {
     switch (key) {
       case "gScore":
@@ -37,12 +54,12 @@ export class Tile {
   }
 
   getData() {
-    let data = {
+    return {
       gScore : {
           type : "slider",
-          value : 10,
+          value : this.g,
           floor : 1,
-          roof  : 200,
+          roof  : 100,
       },
 
       Walkable : {
@@ -50,7 +67,5 @@ export class Tile {
           value : this.walkable,
       },
     }
-
-    return data;
-  }
+  }*/
 }
