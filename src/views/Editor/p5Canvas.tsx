@@ -10,6 +10,8 @@ import {dungeonGen} from '../../app/worldGenerator/dungeonWorld/dungeonGen'
 
 interface ComponentProps {
   clickCallback : Function;
+  moveCallback  : Function;
+
 }
 
 let x = 50;
@@ -77,7 +79,7 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
       }
     
       canvas.elt.onmouseover = () => {locked = false;}
-      canvas.elt.onmouseout  = () => {locked = true; props.clickCallback(-1,-1)}
+      canvas.elt.onmouseout  = () => {locked = true; props.moveCallback(-1,-1)}
     
       canvas.elt.onmousemove = (e:MouseEvent) => {
         if (!locked) {
@@ -85,8 +87,8 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
           let x = Math.floor((e.x - target.offsetLeft) / w);
           let y = Math.floor((e.y - target.offsetTop ) / w);
           getTool().logic.call("oi",x,y,e);   
-          props.clickCallback(x,y)
-        } else {props.clickCallback(-1,-1)}
+          props.moveCallback(x,y);
+        } else {props.moveCallback(-1,-1)}
       }
 
       canvas.elt.onmousedown = (e:MouseEvent) => {
@@ -96,6 +98,7 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
           let y = Math.floor((e.y - target.offsetTop ) / w);
           console.log(y);
           getTool().logic.call("oi",x,y,e);
+          props.clickCallback(x,y);
         }
       }
     canvasUpdate(p5);

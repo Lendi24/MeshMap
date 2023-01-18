@@ -29,8 +29,8 @@ export default function Editor() {
 }*/
 
 interface EditorState {
-  x:number,
-  y:number,
+  hoverX: number, hoverY:number,
+  selectX:number, selectY:number,
 }
 
 interface EditorProps {
@@ -45,18 +45,26 @@ class Editor extends React.Component<EditorProps,EditorState>  {
   constructor(props:any) {
     super(props);
     this.render              = this.render.bind(this);
-    this.state = {x:-1, y:-1};
+    this.state = {
+      hoverX: -1, hoverY: -1,
+      selectX:-1, selectY:-1,
+    };
   }
 
   render() {
     return (
       <div className="flex flex-col h-screen m-0 z-1 overflow-y-hidden">
           <div className="flex flex-grow m-0 overflow-hidden bg-green-600 justify-between">
-              <ComponentSideBar selectedTile={{x:this.state.x,y:this.state.y}}/>            
+              <ComponentSideBar selectedTile={{x:this.state.selectX,y:this.state.selectY}}/>            
               <div className="w-full h-full m-0 flex justify-center items-center">
-                <P5Canvas clickCallback={(x:number,y:number)=>{
-                  this.setState({x:x,y:y});
-                }}/>
+                <P5Canvas 
+                  clickCallback={(x:number,y:number)=>{
+                    this.setState({selectX:x,selectY:y}); 
+                  }}
+                  moveCallback={(x:number,y:number)=>{
+                    this.setState({hoverX:x,hoverY:y});
+                  }
+                }/>
                 {/*<ReactP5Wrapper sketch={sketch}>*/}
               </div>
           </div>
