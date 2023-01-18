@@ -27,7 +27,20 @@ export class World {
         }
     
       }
-    
+      
+      clear() {
+        this.currentRooms = []
+        for ( let i = 0; i < this.grid.length;i++) {
+          for ( let j = 0; j < this.grid[0].length;j++) {  //meh, itll workz 
+            this.grid[i][j] = new Tile;;
+      
+            this.grid[i][j].rgbText = "rgb(255,255,255)";
+            this.generateExits();
+        
+          }
+        }       
+      }
+      
       generateRoom(x1:any,y1:any,length:any,height:any){
         this.rooms++;
         let placeRoom:any = true;

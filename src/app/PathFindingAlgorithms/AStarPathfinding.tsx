@@ -1,5 +1,6 @@
 import { RoomTile } from "../tiles/TileRoom";
 import {board} from '../../views/Editor/p5Canvas'
+import animate from './pathFindingAnime'
 
 export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   
@@ -12,13 +13,9 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
   let end:any = world.grid[x2][y2];
 
   start.walkable = true;
- 
   end.walkable = true;
 
-
-
   openSet.push(start);
-
 
   for (let j = 0; j < world.cols; j++) {
     for (let i = 0; i < world.rows; i++) {
@@ -26,7 +23,6 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any){
       world.grid[j][i].visited = false;
       world.grid[j][i].truePath = false;   
     }
-
  }
 
     function removeFromArray(arr:any, elt:any) {

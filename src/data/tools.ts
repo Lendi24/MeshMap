@@ -1,8 +1,11 @@
 import React, { Component, createContext } from 'react';
 import * as icons from '@mdi/js' ;
 import '@mdi/js';
-import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel} from '../views/Editor/p5Canvas'
+import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel, board} from '../views/Editor/p5Canvas'
+import {dungeonGen} from '../app/worldGenerator/dungeonWorld/dungeonGen'
+import {generateCircular} from '../app/worldGenerator/circularWorld/circularGen'
 import {Carve} from '../app/PathFindingAlgorithms/AStarPathfinding'
+
 //import {setSelectedTile} from '../components/SideBar'
 
 let pageToolIndex = 0;
@@ -157,7 +160,7 @@ let pageTools = [
                 console.log(roomHeight)
                 console.log(roomLength)
                 
-                generateRoom(x,y,parseInt(roomLength),parseInt(roomHeight))
+                board.generateRoom(x,y,parseInt(roomLength),parseInt(roomHeight))
             }
         }
     },
@@ -174,7 +177,7 @@ let pageTools = [
 
         logic : (x:number,y:number,e:MouseEvent)=>{
             if (e.target && e.buttons) {
-                canvaseClean();
+                board.clear();
             }
         }
     },
@@ -229,8 +232,8 @@ let pageTools = [
                 let minRoomHeight = (getTool() as any).conf.maxRoomLength.value;
                 let maxRooms =  (getTool() as any).conf.maxRooms.value;
                 
-                canvaseClean();
-                dungeonGen(parseInt(maxRoomLength),parseInt(minRoomLength),parseInt(maxRoomHeight),parseInt(minRoomHeight),parseInt(maxRooms),returnBoard())
+                board.clear();
+                dungeonGen(parseInt(maxRoomLength),parseInt(minRoomLength),parseInt(maxRoomHeight),parseInt(minRoomHeight),parseInt(maxRooms),board)
             
 
                
@@ -265,8 +268,8 @@ let pageTools = [
 
                 let radius = (getTool() as any).conf.radius.value;
                 let Rooms = (getTool() as any).conf.rooms.value;
-                canvaseClean()
-                generateCircular(x,y,parseInt(radius),returnBoard(),parseInt(Rooms))
+                board.clear()
+                generateCircular(x,y,parseInt(radius),board,parseInt(Rooms))
             }
         }
     },

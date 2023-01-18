@@ -1,4 +1,4 @@
-import {canvasUpdate} from '../p5'
+//canvasupdateimport _=)
 export default function animate(world:any, array:any){
 
     let originalColor:string;
@@ -20,12 +20,12 @@ export default function animate(world:any, array:any){
                         console.log(originalColor)
                         console.log( path[array.length-1])
                         path[array.length-1].rgbText = originalColor;
-                        canvasUpdate()
+                        //canvasUpdate()
                     }, 3000);
                 
                 }
            
-            canvasUpdate();
+            //canvasUpdate();
          
         }, 100*i);
         
@@ -33,3 +33,8 @@ export default function animate(world:any, array:any){
 
 
 }
+
+
+/*
+No
+*/
