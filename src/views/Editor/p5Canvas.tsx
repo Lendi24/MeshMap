@@ -8,7 +8,9 @@ import { getTool }  from '../../data/tools'
 import { RoomTile } from "../../app/tiles/TileRoom";
 import {dungeonGen} from '../../app/worldGenerator/dungeonWorld/dungeonGen'
 
-interface ComponentProps {}
+interface ComponentProps {
+  clickCallback : Function;
+}
 
 let x = 50;
 const y = 50;
@@ -75,20 +77,16 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
       }
     
       canvas.elt.onmouseover = () => {locked = false;}
-      canvas.elt.onmouseout  = () => {locked = true;}
+      canvas.elt.onmouseout  = () => {locked = true; props.clickCallback(-1,-1)}
     
       canvas.elt.onmousemove = (e:MouseEvent) => {
         if (!locked) {
           let target = e.target as HTMLElement;
           let x = Math.floor((e.x - target.offsetLeft) / w);
           let y = Math.floor((e.y - target.offsetTop ) / w);
-            
-          getTool().logic.call("oi",x,y,e);
-            
-            //canvasSetPixel(x,y,new Tile());
-    
-            //obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa, Va fan menade jag -Enok
-        }
+          getTool().logic.call("oi",x,y,e);   
+          props.clickCallback(x,y)
+        } else {props.clickCallback(-1,-1)}
       }
 
       canvas.elt.onmousedown = (e:MouseEvent) => {
@@ -96,15 +94,11 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
           let target = e.target as HTMLElement;
           let x = Math.floor((e.x - target.offsetLeft) / w);
           let y = Math.floor((e.y - target.offsetTop ) / w);
-                
           console.log(y);
-              
           getTool().logic.call("oi",x,y,e);
-              
         }
       }
-
-      canvasUpdate(p5);
+    canvasUpdate(p5);
 	};
 
 	const draw = (p5: p5Types) => {
@@ -126,14 +120,6 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
             }
         } 
     }  
-
-
-    /*/////////////////////
-    //EnoksFunctionsBelow//
-    /////////////////////*/
-
-
-
 
 	return (
         <div id="react-p5-canvas">

@@ -10,6 +10,7 @@ import { ReactP5Wrapper } from "react-p5-wrapper";
 import { DataSelectedTileContext } from "../../data/tools";
 
 import P5Canvas from "./p5Canvas";
+import { stat } from 'fs';
 /*
 export default function Editor() {
   return (
@@ -27,34 +28,35 @@ export default function Editor() {
   );
 }*/
 
+interface EditorState {
+  x:number,
+  y:number,
+}
+
+interface EditorProps {
+}
+
+
 interface DataSelectedTileContextInt{
   x:number,
   y:number,
 }
-class Editor extends React.Component {
+class Editor extends React.Component<EditorProps,EditorState>  {
   constructor(props:any) {
     super(props);
     this.render              = this.render.bind(this);
-    this.updateSelectedTile  = this.render.bind(this);
-    this.state = {
-      selectedTile: {x: -1, y:-1}
-    };
-  }
-
-  updateSelectedTile(x:Number,y:Number) {
-    this.setState({
-      selectedTile: {x:x,y:y}
-    });
+    this.state = {x:-1, y:-1};
   }
 
   render() {
-    let context = this.context as DataSelectedTileContextInt;
     return (
       <div className="flex flex-col h-screen m-0 z-1 overflow-y-hidden">
           <div className="flex flex-grow m-0 overflow-hidden bg-green-600 justify-between">
-              <ComponentSideBar selectedTile={{x:context.x,y:context.y}}/>            
+              <ComponentSideBar selectedTile={{x:this.state.x,y:this.state.y}}/>            
               <div className="w-full h-full m-0 flex justify-center items-center">
-                <P5Canvas/>
+                <P5Canvas clickCallback={(x:number,y:number)=>{
+                  this.setState({x:x,y:y});
+                }}/>
                 {/*<ReactP5Wrapper sketch={sketch}>*/}
               </div>
           </div>
