@@ -56,8 +56,22 @@ export function AstarPath(x1:any,y1:any,x2:any,y2:any,world:any,showPath:boolean
   
   function heuristic(start:any,end:any){
 
-    let currentCoordsStart = find2DArray(start);
-    let currentCoordsEnd = find2DArray(end);
+    let currentCoordsStart;
+    let currentCoordsEnd;
+    if (start instanceof RoomTile) {
+      currentCoordsStart = start.door1;
+    }
+    else{
+      currentCoordsStart = find2DArray(start);
+    }
+    
+    if (end instanceof RoomTile) {
+      currentCoordsEnd = end.door1;
+    }
+    else{
+      currentCoordsEnd = find2DArray(end);
+    }
+ 
 
   
     let totalD= Math.abs(currentCoordsStart![0] - currentCoordsEnd![0]) + Math.abs(currentCoordsStart![1] - currentCoordsEnd![1]);
@@ -163,7 +177,7 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
   for (let j = 0; j < board.cols; j++) {
     for (let i = 0; i < board.rows; i++) {
 
-      board.grid[j][i].g = randomIntFromInterval(0,1)
+      board.grid[j][i].g += randomIntFromInterval(0,6)
       
     }
 
@@ -192,8 +206,22 @@ export function Carve(x1:any,y1:any,x2:any,y2:any,world:any){
   }
   function heuristic(start:any,end:any){
 
-    let currentCoordsStart = find2DArray(start);
-    let currentCoordsEnd = find2DArray(end);
+    let currentCoordsStart;
+    let currentCoordsEnd;
+    if (start instanceof RoomTile) {
+      currentCoordsStart = start.door1;
+    }
+    else{
+      currentCoordsStart = find2DArray(start);
+    }
+    
+    if (end instanceof RoomTile) {
+      currentCoordsEnd = end.door1;
+    }
+    else{
+      currentCoordsEnd = find2DArray(end);
+    }
+ 
 
   
     let totalD= Math.abs(currentCoordsStart![0] - currentCoordsEnd![0]) + Math.abs(currentCoordsStart![1] - currentCoordsEnd![1]);

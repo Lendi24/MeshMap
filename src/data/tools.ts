@@ -157,8 +157,7 @@ let pageTools = [
             if (e.target && e.buttons) {
                 let roomLength = (getTool() as any).conf.length.value;
                 let roomHeight = (getTool() as any).conf.height.value;
-                console.log(roomHeight)
-                console.log(roomLength)
+        
                 
                 board.generateRoom(x,y,parseInt(roomLength),parseInt(roomHeight))
             }

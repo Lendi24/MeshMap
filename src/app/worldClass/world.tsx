@@ -44,11 +44,15 @@ export class World {
       generateRoom(x1:any,y1:any,length:any,height:any){
         this.rooms++;
         let placeRoom:any = true;
-        const roomNode = new RoomTile(this.rooms)
-        roomNode.walkable = true;
         let cornerX =  Math.round(x1-(length/2));
         let cornerY = Math.round(y1-(height/2));
+        const roomNode = new RoomTile(this.rooms,cornerX,cornerY,length,height)
+        
+        roomNode.walkable = true;
+      
         let validRange = true;
+
+        
 
         if (cornerX < 0) {
          // console.log("outOfBounds for room in X")
@@ -92,6 +96,48 @@ export class World {
            }
          }
         }
+        
+        let topEntrance,rightEntrance,leftEntrance,botEntrance;
+        if ( this.grid[cornerX+(length/2)]) {  topEntrance = this.grid[cornerX+(length/2)][cornerY-1];  } 
+        if ( this.grid[cornerX+length+1]   ) { rightEntrance = this.grid[cornerX+length][cornerY+(height/2)];      } 
+        if ( this.grid[cornerX+(length/2)] ) { botEntrance = this.grid[cornerX+(length/2)][cornerY+height];  } 
+        if ( this.grid[cornerX-1][cornerY+(height/2)]   ) { leftEntrance = this.grid[cornerX-1][cornerY+(height/2)];      } 
+
+      //      let topEntrance = this.grid[cornerX+(length/2)][cornerY-1]
+      //    let rightEntrance = this.grid[cornerX+length+1][cornerY+(height/2)]
+      //    let leftEntrance = this.grid[cornerX-1][cornerY+(height/2)]
+      //    let botEntrance = this.grid[cornerX+(length/2)][cornerY+height+1]
+
+         for (let j = cornerX-2; j < length+cornerX+2; j++) {
+          for (let i = cornerY-2; i < height+cornerY+2; i++) {
+
+            if (j>0          && 
+              j<this.cols    && 
+              i>0            && 
+              i<this.rows    &&
+              topEntrance != this.grid[j][i]   &&
+              leftEntrance  != this.grid[j][i] &&
+              rightEntrance  != this.grid[j][i]&&
+              botEntrance != this.grid[j][i]
+
+              )
+
+              {
+                
+                // this.grid[j][i].rgbText = "rgb(255,0,0)"
+              if(this.grid[j][i] instanceof RoomTile)
+              {
+
+              }
+              else{
+                // console.log(this.grid[j][i].rgbText = "rgb(255,0,0)")
+
+                this.grid[j][i].g = 20;
+
+              }
+            }
+         }
+       }
      
     
         
