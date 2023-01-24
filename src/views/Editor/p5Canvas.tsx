@@ -14,9 +14,6 @@ interface ComponentProps {
 
 }
 
-let x = 50;
-const y = 50;
-
 let w : number;
 let columns : any;
 let rows : any;
@@ -63,9 +60,10 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
 const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
 	//See annotations in JS for more information
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
-      let canvas = p5.createCanvas(720, 720).parent("react-p5-canvas");
-
       w = 15;
+
+      let canvas = p5.createCanvas(49*w, 49*w).parent("react-p5-canvas");
+
       columns = Math.floor(p5.width / w);
       rows = Math.floor(p5.height / w);
     

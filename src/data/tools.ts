@@ -5,6 +5,7 @@ import {canvasSetPixel, canvasSetPixelColor, canvasErasePixel, board} from '../v
 import {dungeonGen} from '../app/worldGenerator/dungeonWorld/dungeonGen'
 import {generateCircular} from '../app/worldGenerator/circularWorld/circularGen'
 import {Carve} from '../app/PathFindingAlgorithms/AStarPathfinding'
+import mazeGen from '../app/worldGenerator/mazeGenerator/mazeGen'
 
 //import {setSelectedTile} from '../components/SideBar'
 
@@ -241,7 +242,42 @@ let pageTools = [
         }
     },
 
-    {
+    {//---- Maze
+        data : {
+            title:  "Generate maze",
+            icon:   icons.mdiMace    ,    
+        },
+
+        conf : {
+            width : {
+                type : "slider",
+                value : 10,
+                floor : 1,
+                roof  : 20,
+            },
+
+            height : {
+                type : "slider",
+                value : 4,
+                floor : 1,
+                roof  : 20,
+            },
+        },
+
+        logic : (x:number,y:number,e:MouseEvent)=>{
+            if (e.target && e.buttons) {
+
+                let width = (getTool() as any).conf.width.value;
+                let height = (getTool() as any).conf.height.value;
+                board.clear()
+                mazeGen();
+                //generateCircular(x,y,parseInt(radius),board,parseInt(Rooms))
+
+            }
+        }
+    },
+
+    {//---- Circular world
         data : {
             title:  "Generate circular world",
             icon:   icons.mdiAutorenew    ,    
@@ -274,103 +310,6 @@ let pageTools = [
         }
     },
 
-    
-    
-
-
-
-    /*
-    {
-        data : {
-            title:  "userCreatePage",
-            icon:   icons.mdiAccountPlus ,    
-        },
-
-        conf : {
-            testslid : {
-                type : "slider",
-                value : 10,
-                floor : 1,
-                roof  : 20,
-            },
-
-            testbox : {
-                type : "box",
-                value : 1,
-            },
-        },
-    },
-
-    {
-        data : {
-            title:  "userLoginPage",
-            icon:   icons.mdiAccountKey  ,
-        },
-
-        conf : {
-            testslid : {
-                type : "slider",
-                value : 10,
-                floor : 1,
-                roof  : 20,
-            },
-
-            testbox : {
-                type : "box",
-                value : 1,
-            },
-        },
-
-    },
-
-    {
-        data : {
-            title:  "Create",
-            icon:   icons.mdiContentSave ,    
-        },
-
-        conf : {
-            testslid : {
-                type : "slider",
-                value : 10,
-                floor : 1,
-                roof  : 20,
-            },
-
-            testbox : {
-                type : "box",
-                value : 1,
-            },
-        },
-    },
-
-    {
-        data : {
-            title: "Create",
-            icon: icons.mdiShapeCirclePlus,    
-        },
-
-        conf : {
-            testslid : {
-                type : "slider",
-                value : 10,
-                floor : 1,
-                roof  : 20,
-            },
-
-            testbox : {
-                type : "box",
-                value : 1,
-            },
-        },
-    },
-
-
-/*
-    { 
-        title: "Connect (C)",
-        icon: icons.mdiVectorLine,
-    },*/
 ];
 
 export default pageTools;

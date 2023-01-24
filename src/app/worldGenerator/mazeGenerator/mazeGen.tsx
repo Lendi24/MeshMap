@@ -1,13 +1,13 @@
+import {board} from '../../../views/Editor/p5Canvas'
 
-class MazeBuilder {
-
+class MazeGenerator {
     width:number;
     height:number; 
     
     cols:number; 
     rows:number; 
     
-    maze:Array<Array<Array<Object>>>;
+    maze:Array<Array<Array<string>>>;
 
     totalSteps : number;
 
@@ -60,30 +60,38 @@ class MazeBuilder {
       this.partition(1, this.height - 1, 1, this.width - 1);
     }
   
-    initArray(value) {
-      return new Array(this.rows).fill(() => new Array(this.cols).fill(value));
+    initArray(value:object) {
+      let arr = new Array
+      for (let rows = 0; rows < this.rows; rows++) {
+        arr[rows] = new Array
+        for (let cols = 0; cols < this.cols; cols++) {
+          arr[rows][cols] = value;
+        }
+      }
+      return arr;
+      //return new Array(this.rows).fill(() => new Array(this.cols).fill(value));
     }
   
-    rand(min, max) {
+    rand(min:number, max:number) {
       return min + Math.floor(Math.random() * (1 + max - min));
     }
   
-    posToSpace(x) {
+    posToSpace(x:number) {
       return 2 * (x-1) + 1;
     }
   
-    posToWall(x) {
+    posToWall(x:number) {
       return 2 * x;
     }
   
-    inBounds(r, c) {
+    inBounds(r:number, c:number) {
       if((typeof this.maze[r] == "undefined") || (typeof this.maze[r][c] == "undefined")) {
         return false; // out of bounds
       }
       return true;
     }
   
-    shuffle(array) {
+    shuffle(array:Array<any>) {
       // sauce: https://stackoverflow.com/a/12646864
       for(let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -92,7 +100,7 @@ class MazeBuilder {
       return array;
     }
   
-    partition(r1, r2, c1, c2) {
+    partition(r1:number, r2:number, c1:number, c2:number) {
       // create partition walls
       // ref: https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_division_method
   
@@ -163,7 +171,7 @@ class MazeBuilder {
   
     }
   
-    isGap(...cells) {
+    isGap(...cells:Array<any>) {
       return cells.every((array) => {
         let row, col;
         [row, col] = array;
@@ -175,8 +183,8 @@ class MazeBuilder {
         return true;
       });
     }
-  
-    countSteps(array, r, c, val, stop) {
+ 
+    countSteps(array:Array<any>, r:number, c:number, val:number, stop:any) {
   
       if(!this.inBounds(r, c)) {
         return false; // out of bounds
@@ -205,8 +213,8 @@ class MazeBuilder {
   
     getKeyLocation() {
   
-      let fromEntrance  = this.initArray(null);
-      let fromExit      = this.initArray(null);
+      let fromEntrance  = this.initArray(new Object);
+      let fromExit      = this.initArray(new Object);
   
       this.totalSteps = -1;
   
@@ -244,5 +252,67 @@ class MazeBuilder {
   
       this.maze[fr][fc] = ["key"];
     }
+
+    paint(){
+
+      //center
+      let offsetX = ((board.grid.length-this.maze.length)/2)
+      let offsetY = ((board.grid[0].length-this.maze[0].length)/2)
+
+      //paint
+      for (let x = 0; x < this.maze.length; x++) {
+        for (let y = 0; y < this.maze[0].length; y++) {
+          if (this.maze[x][y][0] == "wall") {
+            board.grid[x+offsetX][y+offsetY].rgbText = 'rgb(0,50,55)';
+            board.grid[x+offsetX][y+offsetY].walkable = false;
+          }
+        }        
+      }
+      console.log(this.maze)
+    }
+    /*
+    display(id) {
+  
+      this.parentDiv = document.getElementById(id);
+  
+      if(!this.parentDiv) {
+        alert("Cannot initialise maze - no element found with id \"" + id + "\"");
+        return false;
+      }
+  
+      while(this.parentDiv.firstChild) {
+        this.parentDiv.removeChild(this.parentDiv.firstChild);
+      }
+  
+      const container = document.createElement("div");
+      container.id = "maze";
+      container.dataset.steps = this.totalSteps;
+  
+      this.maze.forEach((row) => {
+        let rowDiv = document.createElement("div");
+        row.forEach((cell) => {
+          let cellDiv = document.createElement("div");
+          if(cell) {
+            cellDiv.className = cell.join(" ");
+          }
+          rowDiv.appendChild(cellDiv);
+        });
+        container.appendChild(rowDiv);
+      });
+  
+      this.parentDiv.appendChild(container);
+  
+      return true;
+    }*/
+  
   }
   
+  export default generate;
+
+  function generate() {
+    let maze = new MazeGenerator(
+      Math.floor(board.grid.length/2)-1, 
+      Math.floor(board.grid[0].length/2)-1
+      );
+    maze.paint()
+  }
