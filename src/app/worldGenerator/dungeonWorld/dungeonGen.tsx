@@ -55,10 +55,20 @@ else{
 
 }
 
+for (let j = 0; j < world.cols; j++) {
+      
+  for (let i = 0; i < world.rows; i++) {
+    
+      world.grid[j][i].g = 0;
+      
+  }
+}
 
  let firstRoom:any = find2DArray(world.currentRooms[0])
  let secondRoom:any = find2DArray(world.currentRooms[4])
  AstarPath(firstRoom[0],firstRoom[1],secondRoom[0],secondRoom[1],world,true)
+
+
 
 }
 
