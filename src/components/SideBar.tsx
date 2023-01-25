@@ -36,19 +36,28 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
         this.handleChange   = this.handleChange.bind(this);
         this.render         = this.render.bind(this);
         this.state = {
-            selectedToolId: 0,
+            selectedToolId: 0,//Remove?
             //selectedTile  : {x:-1,y:-1},
         };
     }
 
     
     handleUserSelectTile(x:number,y:number){
-        return (
-            <ConfigSelect   
-                selectors={canvasGetPixel(1,1).getData()}
-                toolTitle={`Selected tile`}
-            />
-        )
+        if (x >= 0 && y >= 0) {
+            console.log(canvasGetPixel(x,y))
+            //console.log(canvasGetPixel(x,y).getData());            
+            return (
+                <ConfigSelect   
+                    selectors={canvasGetPixel(x,y).data}
+                    toolTitle={`Selected tile at: (x:${x} y:${y})`}
+                    key={`(x:${x}y:${y})`}
+                />    
+            );
+        } else {
+            return (
+                <div></div>
+            );
+        }
     }
     
     handleChange(e:MouseEvent) {
@@ -90,6 +99,9 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
       </div>       
 
       </div>
+                {this.handleUserSelectTile(this.props.selectedTile.x,this.props.selectedTile.y)}
+                x : {this.props.selectedTile.x} ± y : {this.props.selectedTile.y}
+            </div>
         );
     }    
 }

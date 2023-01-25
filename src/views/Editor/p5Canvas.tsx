@@ -8,10 +8,11 @@ import { getTool }  from '../../data/tools'
 import { RoomTile } from "../../app/tiles/TileRoom";
 import {dungeonGen} from '../../app/worldGenerator/dungeonWorld/dungeonGen'
 
-interface ComponentProps {}
+interface ComponentProps {
+  clickCallback : Function;
+  moveCallback  : Function;
 
-let x = 50;
-const y = 50;
+}
 
 let w : number;
 let columns : any;
@@ -50,7 +51,7 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
   
   }
   
-  export function canvasGetPixel(x:number, y:number) { return board[x][y]; } 
+  export function canvasGetPixel(x:number, y:number) { return board.grid[x][y]; } 
   
 
 /*////////////////////////
@@ -59,9 +60,10 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
 const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
 	//See annotations in JS for more information
 	const setup = (p5: p5Types, canvasParentRef: Element) => {
-      let canvas = p5.createCanvas(720, 720).parent("react-p5-canvas");
-
       w = 15;
+
+      let canvas = p5.createCanvas(49*w, 49*w).parent("react-p5-canvas");
+
       columns = Math.floor(p5.width / w);
       rows = Math.floor(p5.height / w);
     
@@ -75,20 +77,16 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
       }
     
       canvas.elt.onmouseover = () => {locked = false;}
-      canvas.elt.onmouseout  = () => {locked = true;}
+      canvas.elt.onmouseout  = () => {locked = true; props.moveCallback(-1,-1)}
     
       canvas.elt.onmousemove = (e:MouseEvent) => {
         if (!locked) {
           let target = e.target as HTMLElement;
           let x = Math.floor((e.x - target.offsetLeft) / w);
           let y = Math.floor((e.y - target.offsetTop ) / w);
-            
-          getTool().logic.call("oi",x,y,e);
-            
-            //canvasSetPixel(x,y,new Tile());
-    
-            //obeserver att ett fel kan inträffa i fall det är j +i*cols eller vice versa, Va fan menade jag -Enok
-        }
+          getTool().logic.call("oi",x,y,e);   
+          //props.moveCallback(x,y);
+        } else {props.moveCallback(-1,-1)}
       }
 
       canvas.elt.onmousedown = (e:MouseEvent) => {
@@ -96,15 +94,12 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
           let target = e.target as HTMLElement;
           let x = Math.floor((e.x - target.offsetLeft) / w);
           let y = Math.floor((e.y - target.offsetTop ) / w);
-                
           console.log(y);
-              
           getTool().logic.call("oi",x,y,e);
-              
+          props.clickCallback(x,y);
         }
       }
-
-      canvasUpdate(p5);
+    canvasUpdate(p5);
 	};
 
 	const draw = (p5: p5Types) => {
@@ -126,14 +121,6 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
             }
         } 
     }  
-
-
-    /*/////////////////////
-    //EnoksFunctionsBelow//
-    /////////////////////*/
-
-
-
 
 	return (
         <div id="react-p5-canvas">

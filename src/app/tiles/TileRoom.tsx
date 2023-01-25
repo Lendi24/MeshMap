@@ -11,7 +11,6 @@ export class RoomTile extends Tile {
   priorityEntrance: any[];
   door1:Array<number>
   // door2:Array<number>
-
   // door3:Array<number>
   // door4:Array<number>
 
