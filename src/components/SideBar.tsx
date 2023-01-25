@@ -14,8 +14,8 @@ import { mdiDownloadBox } from '@mdi/js';
 
 import {canvasGetPixel} from '../views/Editor/p5Canvas';
 
-//export function setSelectedTile(str:string) {selectedTile = str; };
-//import {context} from './';
+// export function setSelectedTile(str:string) {selectedTile = str; };
+// import {context} from './';
 
 interface SidebarTool {
     data : any
@@ -85,7 +85,7 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
                     selectors={(tools[ (this.state as SideBarState).selectedToolId ] as SidebarTool).conf}
                     toolTitle={`Tool: '${(tools[ (this.state as SideBarState).selectedToolId ].data.title)}'`}
                 />
-                {/* x : {this.props.selectedTile.x} ± y : {this.props.selectedTile.y} */}
+                x : {this.props.selectedTile.x} ± y : {this.props.selectedTile.y}
 
        <div className="absolute inset-x-16 bottom-4 w-1/2 space-y-2">  
 
