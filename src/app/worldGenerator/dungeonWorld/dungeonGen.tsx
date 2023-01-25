@@ -1,5 +1,6 @@
 import { AstarPath, Carve } from "../../PathFindingAlgorithms/AStarPathfinding"
-
+import {saveMap} from "../../../components/jsconfunctions/functionForMap"
+import { board } from "../../../views/Editor/p5Canvas"
 export function dungeonGen (maxRoomLength:any,minRoomLength:any, maxRoomHeight:any, minRoomHeight:any, maxRoooms:any, world:any){
   
   function find2DArray(target:any){
@@ -67,8 +68,6 @@ for (let j = 0; j < world.cols; j++) {
  let firstRoom:any = find2DArray(world.currentRooms[0])
  let secondRoom:any = find2DArray(world.currentRooms[4])
  AstarPath(firstRoom[0],firstRoom[1],secondRoom[0],secondRoom[1],world,true)
-
-
 
 }
 
