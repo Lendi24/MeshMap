@@ -7,6 +7,7 @@ import { World }    from '../../app/worldClass/world';
 import { getTool }  from '../../data/tools'
 import { RoomTile } from "../../app/tiles/TileRoom";
 import {dungeonGen} from '../../app/worldGenerator/dungeonWorld/dungeonGen'
+import {loadURLMap} from '../../components/jsconfunctions/functionForMap'
 
 interface ComponentProps {
   clickCallback : Function;
@@ -48,7 +49,7 @@ export function canvasSetPixel(x:number, y:number, pixel:Tile) {
   
     board.generateExits()
     //canvasUpdate()
-  
+
   }
   
   export function canvasGetPixel(x:number, y:number) { return board.grid[x][y]; } 
@@ -99,12 +100,17 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
           props.clickCallback(x,y);
         }
       }
+
+    
     canvasUpdate(p5);
+    loadURLMap(board);
 	};
 
 	const draw = (p5: p5Types) => {
         canvasUpdate(p5);
 	};
+
+  
 
     /*//////////////////////
     //CustomFunctionsBelow//
@@ -120,8 +126,8 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
                 p5.rect(i * w, j * w, w-1, w-1);
             }
         } 
-    }  
 
+    }  
 	return (
         <div id="react-p5-canvas">
             <Sketch setup={setup} draw={draw} />
