@@ -89,7 +89,13 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
 
        <div className="absolute inset-x-16 bottom-4 w-1/2 space-y-2">  
 
-       <button className="flex flex-row w-full  space-x-2 items-center justify-center  drop-shadow-xl hover:scale-125 transition bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+       <button className="flex flex-row w-full  space-x-2 items-center justify-center  drop-shadow-xl hover:scale-125 transition bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+       onClick={()=>{
+        let link = document.createElement('a');
+        link.download = 'img.png';
+        link.href = (document.getElementById('defaultCanvas0') as HTMLCanvasElement).toDataURL()
+        link.click();
+       }}>
        <Icon path={mdiDownloadBox} size={0.75} /> <h2 className="text-xl"> save</h2>
       </button>
      
