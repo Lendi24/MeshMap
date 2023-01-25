@@ -99,9 +99,6 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
       </div>       
 
       </div>
-                {this.handleUserSelectTile(this.props.selectedTile.x,this.props.selectedTile.y)}
-                x : {this.props.selectedTile.x} ± y : {this.props.selectedTile.y}
-            </div>
         );
     }    
 }
