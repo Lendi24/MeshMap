@@ -5,6 +5,12 @@ import {setTool} from "../data/tools";
 
 import ToolSelect   from './SideBar/ToolSelect';
 import ConfigSelect from './SideBar/ConfigSelect';
+import Icon from '@mdi/react';
+import { mdiArrowLeft } from '@mdi/js';
+import { mdiDownloadBox } from '@mdi/js';
+
+
+
 
 import {canvasGetPixel} from '../views/Editor/p5Canvas';
 
@@ -70,8 +76,20 @@ class SideBar extends React.Component<SideBarProps, SideBarState> {
                     selectors={(tools[ (this.state as SideBarState).selectedToolId ] as SidebarTool).conf}
                     toolTitle={`Tool: '${(tools[ (this.state as SideBarState).selectedToolId ].data.title)}'`}
                 />
-                x : {this.props.selectedTile.x} ± y : {this.props.selectedTile.y}
-            </div>
+                {/* x : {this.props.selectedTile.x} ± y : {this.props.selectedTile.y} */}
+
+       <div className="absolute inset-x-16 bottom-4 w-1/2 space-y-2">  
+
+       <button className="flex flex-row w-full  space-x-2 items-center justify-center  drop-shadow-xl hover:scale-125 transition bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+       <Icon path={mdiDownloadBox} size={0.75} /> <h2 className="text-xl"> save</h2>
+      </button>
+     
+     <a className="flex flex-row space-x-2 items-center justify-center  drop-shadow-xl hover:scale-125 transition bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" href="/">
+     <Icon path={mdiArrowLeft} size={0.75} /> <h2 className="text-xl">back</h2>
+    </a>
+      </div>       
+
+      </div>
         );
     }    
 }
