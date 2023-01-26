@@ -20,7 +20,6 @@ export default function CompiledDungeons(){
             <DungeonCards 
                 image={item.image}
                 title={item.title}
-              
             />
         )
     })        

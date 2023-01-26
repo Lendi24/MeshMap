@@ -11,20 +11,16 @@ export default function DungeonCards(props:any){
     //         .then(data => setDungeonData(data))
     // }, [])
 
-
     return (
-        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-            <img className="rounded-t-lg" src={props.image} alt="" />
-        </a>
-        <div className="p-5">
-            <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{props.title}</h5>
+        <div className="min-w-200 max-w-200 w-200 h-24 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-2">
+            <a className="flex flex-col h-full w-full" href="#">
+                <div className="h-1/3 overflow-hidden">
+                    <img className="rounded-t-lg" src={props.image} alt="" />
+                </div>
+                <div className="h-2/3 overflow-hidden">
+                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{props.title}</h5>
+                </div>
             </a>
-            <button className=" drop-shadow-xl hover:scale-125 transition bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-             <h2 className="text-4xl p-2">Load saved</h2>
-            </button>
         </div>
-    </div>
-    )
+    );
 }

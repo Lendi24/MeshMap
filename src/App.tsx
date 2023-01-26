@@ -14,7 +14,7 @@ function App() {
       <div className="flex flex-col flex-shrink items-center	">
 
         <div className="flex flex-row flex-shrink">
-          <h1 className=" text-5xl font-extrabold text-gray-800">MeshMap</h1>   
+          <h1 className=" text-5xl font-extrabold text-white">MeshMap</h1>   
           <span className="bg-blue-100 text-blue-800 text-2xl font-bold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2">PRO</span>
         </div>
 
@@ -27,7 +27,7 @@ function App() {
       </div>
     
       <div className="flex flex-row flex-shrink">
-        <div className="flex flex-row overflow-scroll">
+        <div className="flex flex-row overflow-x-scroll">
           <CompiledDungeons/>
         </div>
       </div>
