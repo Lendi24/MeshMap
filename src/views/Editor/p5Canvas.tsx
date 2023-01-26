@@ -8,6 +8,7 @@ import { getTool }  from '../../data/tools'
 import { RoomTile } from "../../app/tiles/TileRoom";
 import {dungeonGen} from '../../app/worldGenerator/dungeonWorld/dungeonGen'
 import {loadURLMap} from '../../components/jsconfunctions/functionForMap'
+import Meme  from '../cardDesign/dungeonCard'
 
 interface ComponentProps {
   clickCallback : Function;
@@ -108,6 +109,7 @@ const p5Canvas: React.FC<ComponentProps> = (props: ComponentProps) => {
 
 	const draw = (p5: p5Types) => {
         canvasUpdate(p5);
+        
 	};
 
   
