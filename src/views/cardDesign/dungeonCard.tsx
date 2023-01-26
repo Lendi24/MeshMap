@@ -12,15 +12,18 @@ export default function DungeonCards(props:any){
     // }, [])
 
     return (
-        <div className="min-w-200 max-w-200 w-200 h-24 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-2">
-            <a className="flex flex-col h-full w-full" href="#">
-                <div className="h-1/3 overflow-hidden">
-                    <img className="rounded-t-lg" src={props.image} alt="" />
-                </div>
-                <div className="h-2/3 overflow-hidden">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{props.title}</h5>
-                </div>
-            </a>
-        </div>
+    <div className="max-w-sm w-sm rounded overflow-hidden shadow-lg" style={{ minWidth: '24rem' }}>
+        <a href="">
+            <div className="h-2/3 overflow-hidden">
+                <img src={props.image} alt="Sunset in the mountains"/>
+            </div>
+            <div className="h-1/3 px-6 py-4">
+                <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
+                <p className="text-gray-700 text-base">
+                    Hola
+                </p>
+            </div>
+        </a>
+    </div>
     );
 }

@@ -9,7 +9,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="  bg-green-600 flex flex-col flex-nowrap w-screen h-screen justify-center align-middle text-center">
+    <div className=" space-y-12 bg-green-600 flex flex-col flex-nowrap w-screen h-screen justify-center align-middle text-center">
       
       <div className="flex flex-col flex-shrink items-center	">
 
@@ -27,7 +27,7 @@ function App() {
       </div>
     
       <div className="flex flex-row flex-shrink">
-        <div className="flex flex-row overflow-x-scroll">
+        <div className="flex flex-row space-x-6 overflow-x-scroll">
           <CompiledDungeons/>
         </div>
       </div>
